@@ -43,7 +43,8 @@ CREATE TABLE locations
 
 CREATE TABLE orders
 (
-	id 				INT UNSIGNED				NOT NULL AUTO_INCREMENT,
+	orderId 		INT UNSIGNED				NOT NULL AUTO_INCREMENT,
+	userId			INT UNSIGNED				NOT NULL,	
 	quantity		INT UNSIGNED				NOT NULL,
 	tortilla		VARCHAR(256)				NOT NULL,
 	rice			INT UNSIGNED				NOT NULL,
@@ -53,7 +54,8 @@ CREATE TABLE orders
 	vegs 			INT UNSIGNED				NOT NULL,
 	extras			INT UNSIGNED				NOT NULL,
 	qSauces 		INT UNSIGNED				NOT NULL,
-	PRIMARY KEY		(id)
+	PRIMARY KEY		(id),
+	FOREIGN KEY		(userId)					REFERENCES users(id)
 );
 
 CREATE TABLE prices
