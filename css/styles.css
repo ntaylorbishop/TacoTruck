@@ -9,11 +9,14 @@ body{
 	min-width:320px;
 }
 
+form {
+	padding-top:100px;
+}
+
 #topBar {
-	position:relative;
+	position:absolute;
 	width:800px;	
 	height:50px;
-	padding:20px;
 }
 
 #logo {
