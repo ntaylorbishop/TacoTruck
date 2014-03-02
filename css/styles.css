@@ -1,3 +1,20 @@
 @charset "UTF-8";
 /* CSS Document */
 
+#topBar {
+	position:relative;
+	width:800px;	
+	height:50px;
+	padding:20px;
+	background-color:#CCC;
+}
+
+#logo {
+	float:left;
+	height:50px;
+}
+
+#links {
+	text-align:right;
+	
+}
