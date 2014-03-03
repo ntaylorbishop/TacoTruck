@@ -1,4 +1,5 @@
 <!doctype html>
+<!--This is our login page.  It provides users with options to log in (if they have an account), sign up for an account, or order as a guest-->
 <html>
 <head>
 	<title>Test Taco</title>
@@ -7,14 +8,14 @@
 <body>
 	<h1>Taco Truck</h1>
 	</div>
-<form name="login" action="#" method="post">
+<form name="login" action="user.html" method="post">
   <div>Username:
     <input type="text" id="userN" name="userN"/>
   </div>
   <div>Password:
     <input type="password" id="pwd" name="pwd"/>
   </div>
-  <input type="button" id="LogIn" name="LogIn" value="Log In"/>
+  <input type="submit" id="LogIn" name="LogIn" value="Log In"/>
   <input type="button" id="register" name="register" value="Sign Up"/>
   <input type="button" id="guest" name="guest" value="Order as a Guest"/>
 </form>
