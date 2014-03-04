@@ -1,3 +1,7 @@
+<?php
+  require('php/lib.php');
+?>
+
 <!doctype html>
 <!--This is our login page.  It provides users with options to log in (if they have an account), sign up for an account, or order as a guest ok-->
 <html>
@@ -17,7 +21,7 @@
     <div id="divider"></div>
     </div>
   <h1 style="text-align:center">Taco Truck</h1>
-<form name="login" action="user.html" method="post">
+<form name="login" action="user.php" method="post">
   <div>Username:
     <input type="text" id="userN" name="userN"/>
   </div>
@@ -26,7 +30,18 @@
   </div>
   <input type="submit" id="LogIn" name="LogIn" value="Log In"/>
 </form>
-<form name="signup" action="account.html" method="post">
+
+<?php
+  if(isset($_POST['submit'])) {
+    if(checkCredentials($_POST['userN'], $_POST['pwd'])) {
+      echo 'User logged in now';
+    }
+    else {
+      echo 'Email or password is incorrect';
+    }
+  } 
+?>
+<form name="signup" action="account.php" method="post">
   <input type="submit" id="register" name="register" value="Sign Up"/>
 </form>
   <input type="button" id="guest" name="guest" value="Order as a Guest"/>
