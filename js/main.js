@@ -4,6 +4,9 @@ $(document).ready(function() {
 	resolution -= 800;
 	resolution /= 2;
 	$("#topBar").css('left',resolution);
+	resolution += 25;
+	$("#content").css('left',resolution);
+	
 	$("#accordion").accordion();
 });
 

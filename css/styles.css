@@ -5,12 +5,11 @@ body{
 	background:#EBEBEB;
 	font:12px/20px Memphis, Helvetica, sans-serif;
 	color:#7c7876;
-	position:relative;
 	min-width:320px;
 }
 
 form {
-	padding-top:100px;
+	
 }
 
 #topBar {
@@ -30,7 +29,7 @@ form {
 	font-size:15px;
 }
 
-#divider {
+.divider {
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:30px;
@@ -44,8 +43,13 @@ a {
 	text-decoration: none;
 }
 
-footer {
+p {
+	padding:0 0 0 0;
+}
+
+#footer {
 	text-decoration:none;
 	color:black;
 	font-size:15px;
+	/*padding-top: 200px;*/
 }

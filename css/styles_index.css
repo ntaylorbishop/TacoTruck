@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#loginPane {
+	float:left;
+	width:30%;
+	padding-left:25px;
+	padding-right:12.5px;
+}
+
+#infoPane {
+	float:left;
+	width:60%;
+	padding-right:25px;
+	padding-left:12.5px;
+}
+
+#content {
+	position:absolute;
+	top:100px;
+	width:750px;
+}
