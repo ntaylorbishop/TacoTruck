@@ -17,13 +17,14 @@ Info:
 	CC_Provider - Type of credit card being used; IE Visa
 	CC_Number - Credit card number. Hashed
 */
-CREATE TABLE users  
+CREATE TABLE Users  
 (
 	UserId 				INT UNSIGNED			NOT NULL AUTO_INCREMENT,
 	GivenName			VARCHAR(256)			NOT NULL,
 	LastName			VARCHAR(256)			NOT NULL,
 	EmailAddress		VARCHAR(256)			NOT NULL,
 	Password 			VARCHAR(255)			NOT NULL,
+	TelephoneNumber 	VARCHAR(256) 			NOT NULL,
 	CC_Provider			VARCHAR(255)			NOT NULL,
 	CC_Number			VARCHAR(255)			NOT NULL,			
 	PRIMARY KEY 		(UserId)
@@ -34,11 +35,11 @@ Table: Locations
 */
 CREATE TABLE Locations
 (
-	name			VARCHAR(256)			NOT NULL,
-	address			VARCHAR(256)			NOT NULL,
-	city			VARCHAR(100)			NOT NULL,
-	state			VARCHAR(2)				NOT NULL,
-	zipcode			INT UNSIGNED			NOT NULL,
+	name			VARCHAR(256)				NOT NULL,
+	address			VARCHAR(256)				NOT NULL,
+	city			VARCHAR(100)				NOT NULL,
+	state			VARCHAR(2)					NOT NULL,
+	zipcode			INT UNSIGNED				NOT NULL,
 	PRIMARY KEY		(name)
 );
 
@@ -55,11 +56,11 @@ CREATE TABLE Orders
 (
 	OrderId 		INT UNSIGNED 				NOT NULL AUTO_INCREMENT,
 	UserId 			INT UNSIGNED 				NOT NULL,
-	Date 			VARCHAR(64) 				NOT NULL,
+	Dates 			DATE			 			NOT NULL,
 	Total 			DECIMAL(3,2)				NOT NULL,
 	PRIMARY KEY 	(OrderId),
 	FOREIGN KEY 	(UserId)					REFERENCES Users(UserId)
-)
+);
 
 /*
 Table: OrderItem
@@ -78,15 +79,15 @@ CREATE TABLE OrderItem
 );
 
 
-CREATE TABLE menu 
+CREATE TABLE Menu 
 (
-    TacoFixinId   	INT(11)         		NOT NULL AUTO_INCREMENT,
-    itemType 		VARCHAR(255) 			NOT NULL,
-    name 			VARCHAR(255) 			NOT NULL,
-    price 			int(11) 				NOT NULL,
-    heatRating 		VARCHAR(11) 			DEFAULT '-1',
-    PRIMARY KEY 	(tacoFixinId)
-)
+    TacoFixinId   	INT UNSIGNED         		NOT NULL AUTO_INCREMENT,
+    itemType 		VARCHAR(255) 				NOT NULL,
+    name 			VARCHAR(255) 				NOT NULL,
+    price 			int(11) 					NOT NULL,
+    heatRating 		VARCHAR(11) 				DEFAULT '0',
+    PRIMARY KEY 	(TacoFixinId)
+);
 
 /*
 Table: OrderItemDetails
@@ -101,5 +102,6 @@ CREATE TABLE OrderItemDetails
 	OrderItemId 		INT UNSIGNED 			NOT NULL,
 	TacoFixinId 		INT UNSIGNED 			NOT NULL,
 	PRIMARY KEY 		(OrderItemDetailId),
-	FOREIGN KEY 		(tacoFixinId) 			REFERENCES menu(tacoFixinId)
+	FOREIGN KEY 		(TacoFixinId) 			REFERENCES Menu(TacoFixinId),
+	FOREIGN KEY 		(OrderItemId) 			REFERENCES OrderItem(OrderItemId)
 );
