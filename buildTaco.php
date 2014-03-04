@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="css/styles.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet" />
 <link href="css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
 <script src="js/jQuery.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
@@ -17,36 +17,36 @@
     <div id="divider"></div>
   </div>
 </div>
-<br/>
-<br/>
-<br/>
-<div id="accordion">
-  <h3>Filling</h3>
-  <div>
-  <ul>
-    <li> Steak </li>
-    <li> Chicken </li>
-    <li> Carnitas </li>
-    <li> Veggies </li>
-  </ul>
-  </div>
-  <h3>Tortilla</h3>
-  <div>
-    <ul>
-      <li>Corn</li>
-      <li>Flour</li>
-    </ul>
-  </div>
-  <h3>Extras</h3>
-  <div>
-    <ul>
-      <li>Guac</li>
-      <li>Sour Cream</li>
-      <li>Queso</li>
-    </ul>
-  </div>
-</div>
 <form id="currentTaco">
+  <div id="accordion">
+    <h3>Filling</h3>
+    <div>
+      <input type="radio" name="filling" value="steak" />
+      Steak<br />
+      <input type="radio" name="filling" value="chicken" />
+      Chicken<br />
+      <input type="radio" name="filling" value="carnitas" />
+      Carnitas<br />
+      <input type="radio" name="filling" value="veggies" />
+      Veggies<br />
+    </div>
+    <h3>Tortilla</h3>
+    <div>
+      <input type="radio" name="tortilla" value="corn" />
+      Corn<br />
+      <input type="radio" name="tortilla" value="flour" />
+      Flour<br />
+    </div>
+    <h3>Extras</h3>
+    <div>
+      <input type="checkbox" name="extras" value="guac" />
+      Guac<br />
+      <input type="checkbox" name="extras" value="sourCream" />
+      Sour Cream<br />
+      <input type="checkbox" name="extras" value="queso" />
+      Queso<br />
+    </div>
+  </div>
   <input type="number" name="quantity" min="1" />
   Quantity:
   <input type="range" name="Quantity" min="1" max="5" />
