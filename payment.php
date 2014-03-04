@@ -1,5 +1,6 @@
 <!doctype html>
-<!--This is a comment-->
+<!--This is the payment page that allows the user to finalize ordering information
+	for their tacos.-->
 <html>
 <head>
 	<title>Taco Truck -- Payment</title>
