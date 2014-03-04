@@ -45,5 +45,8 @@
 	  </div>
 	  <input type="submit" id="register" name="register" value="Sign Up"/>
 	</form>
+<footer>
+  <div style="text-align:center">Taco Truck |<a href="#locations">123 Taco Avenue - Dallas - TX - 75205</a>| 214-MY-TACOS (214-698-2267) |<a href="#homepage">tacotruck.com</a>| Hours: 24/7</div>
+</footer>
 </body>
 </html>
