@@ -1,37 +1,36 @@
-<?php
-	require 'vendor/autoload.php';
-	require 'Slim/Slim.php';
+<!doctype html>
+<!--This is our login page.  It provides users with options to log in (if they have an account), sign up for an account, or order as a guest-->
+<html>
+<head>
+	<title>Welcome to Taco Truck</title>
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
+    <div id="divider"></div>
+	</div>
+  <h1 style="text-align:center">Taco Truck</h1>
+<form name="login" action="user.html" method="post">
+  <div>Username:
+    <input type="text" id="userN" name="userN"/>
+  </div>
+  <div>Password:
+    <input type="password" id="pwd" name="pwd"/>
+  </div>
+  <input type="submit" id="LogIn" name="LogIn" value="Log In"/>
+</form>
+<form name="signup" action="account.html" method="post">
+  <input type="submit" id="register" name="register" value="Sign Up"/>
+</form>
+  <input type="button" id="guest" name="guest" value="Order as a Guest"/>
 
-$app = new Slim();
+	<p>Welcome to TacoTruck.com, where you can order delicious tacos online!</p>
+	<p>We are a family-owned restaurant that prepares the most delicious tacos in the Dallas/Fort Worth Metroplex.</p>
+	<p>We offer a variety of choices and an online ordering system to make it easier for you to get tacos whenever you want, at any of our locations!</p>
 
-$app->get('/orders', 'getOrders');
-/*$app->get('/wines/:id',	'getWine');
-$app->get('/wines/search/:query', 'findByName');
-$app->post('/wines', 'addWine');
-$app->put('/wines/:id', 'updateWine');
-$app->delete('/wines/:id',	'deleteWine');*/
 
-$app->run();
-
-function getOrders() {
-	$sql = "SELECT * FROM orders ORDER BY name";
-	try {
-		$db = getConnection();
-		$stmt = $db->query($sql);
-		$orders = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$db = null;
-	}
-	catch(PDOException $e) {
-		echo "error:" . e->getMessage();
-	}
-}
-?>
-
-<HTML>
-<HEAD>
-	<TITLE>Taco Truck</TITLE>
-</HEAD>
-<BODY>
-	<H1>Hello World!</H1>
-</BODY>
-</HTML>
+</body>
+<footer>
+  <div style="text-align:center">Taco Truck |<a href="#locations">123 Taco Avenue - Dallas - TX - 75205</a>| 214-MY-TACOS (214-698-2267) |<a href="#homepage">tacotruck.com</a>| Hours: 24/7</div>
+</footer>
+</html>
