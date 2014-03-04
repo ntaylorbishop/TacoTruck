@@ -1,5 +1,5 @@
 <!doctype html>
-<!--This is our login page.  It provides users with options to log in (if they have an account), sign up for an account, or order as a guest ok-->
+<!--This is our login page.  It provides users with options to log in (if they have an account), sign up for an account, or order as a guest-->
 <html>
 <head>
 	<title>Welcome to Taco Truck</title>
