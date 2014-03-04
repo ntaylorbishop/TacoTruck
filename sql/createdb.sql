@@ -32,6 +32,7 @@ CREATE TABLE Users
 
 /*
 Table: Locations
+Info: Self explanatory
 */
 CREATE TABLE Locations
 (
@@ -44,7 +45,6 @@ CREATE TABLE Locations
 );
 
 /*
-OrderId,UserId,Date,Total
 Table: Orders
 Info:
 	OrderId - ID for one specific order
@@ -78,6 +78,15 @@ CREATE TABLE OrderItem
 	FOREIGN KEY 	(OrderId) 					REFERENCES Orders(OrderId)
 );
 
+/*
+Table: Menu
+Info:
+	TacoFixinId - Auto incremented ID for every ingredient
+	itemType - Beans, cheese, rice, etc.
+	name - Name of ingredient
+	price - Price of ingredient
+	heatRating - Only pertains to sauces
+*/
 
 CREATE TABLE Menu 
 (

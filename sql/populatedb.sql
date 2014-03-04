@@ -156,5 +156,3 @@ DELETE FROM `tacotruck`.`OrderItemDetails` WHERE `OrderItemDetails`.`OrderItemDe
 DELETE FROM `tacotruck`.`OrderItemDetails` WHERE `OrderItemDetails`.`OrderItemDetailId` = 88;
 DELETE FROM `tacotruck`.`OrderItemDetails` WHERE `OrderItemDetails`.`OrderItemDetailId` = 89;
 DELETE FROM `tacotruck`.`OrderItemDetails` WHERE `OrderItemDetails`.`OrderItemDetailId` = 90;
-
-##This is a comment
