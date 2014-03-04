@@ -22,6 +22,14 @@
   		<h2>Your order is confirmed!</h2>
   		<p>Your order will be ready to pick up in 5-10 minutes.  Please pick it up at your chosen Taco Truck location.</p>
   	</div>
+  	<div id="order">
+  		<h2>Your Order:</h2>
+  		<!--Then a text box where we will include an order, in list form-->
+  		<h3>Order total: </h3>
+  		<form name="return" action="user.php" method="post">
+  			<input type="submit" id="return" name="return" value="Home"/>
+  		</form>
+  	</div>
 
 
 
