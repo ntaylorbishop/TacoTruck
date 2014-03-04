@@ -1,0 +1,46 @@
+itemType,name,price,heatRating
+type,Steak,1,
+type,Chicken,0.75,
+type,Carnitas,1,
+type,Veggie,0.5,
+tortillas,Flour,0.25,
+tortillas,Cayenne,0.35,
+tortillas,Wheat,0.35,
+tortillas,Spinach,0.3,
+rice,Cilantro Rice,0.25,
+rice,Spanish Rice,0.25,
+cheese,Queso Fresco,0.5,
+cheese,Cheddar/Jack Mix,0.35,
+cheese,Monterrey Jack,0.35,
+beans,Refried Beans,0.35,
+beans,Whole Pinto Beans,0.25,
+beans,Black Beans,0.1,
+sauces,Hot Tomatillo,0,3
+sauces,Death,0,4
+sauces,Fresh Lime Juice,0,1
+sauces,Bad Ass BBQ,0,2
+sauces,Mild Tomatillo,0,2
+sauces,Ranch,0,1
+sauces,No Sauce,0,0
+sauces,Habenero,0,3
+sauces,Salsa,0,2
+sauces,Ancho,0,1
+sauces,Tomatillo,0,1
+sauces,Herb Vinigrette,0,1
+vegetables,Poblano Salsa,0,
+vegetables,Roasted Garlic,0,
+vegetables,Peppers/Onions,0,
+vegetables,Red Onion,0,
+vegetables,Jalapenos,0,
+vegetables,Pico de Gallo,0,
+vegetables,White Onion,0,
+vegetables,Tomatoes,0,
+vegetables,Cilantro,0,
+vegetables,Tortilla Strips,0,
+vegetables,Lettuce,0,
+extras,X - Extra Meat/Veggies,1,
+extras,Sour Cream,0.75,
+extras,Guacamole,0.75,
+extras,Queso,0.5,
+extras,Sliced Avocado,0.75,
+extras,Bacon,0.5,
