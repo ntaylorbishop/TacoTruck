@@ -13,7 +13,7 @@
 </head>
 <body>	
 	<div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-    <div id="links"> <a href="#homepage">Home</a> | <a href="#account">Account</a> | <a href="#cart">Cart</a> | <a href="#logoff">Log Off</a>
+    <div id="links"> <a href="user.php">Home</a> | <a href="account.php">Account</a> | <a href="#cart">Cart</a> | <a href="index.php">Log Off</a>
     <div id="divider"></div>
   	</div>
   	<h1 style="text-align:center">Create a Taco Truck Account</h1>
