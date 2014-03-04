@@ -16,7 +16,8 @@
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
 <div id="links"> <a href="#homepage">Home</a> | <a href="#account">Account</a> | <a href="#cart">Cart</a> | <a href="#logoff">Log Off</a>
     <div id="divider"></div>
-  </div>
+ </div>
+ <h1 style="text-align:center">Taco Payment</h1>
   	<form name="payment" action="user.html" method="post">
 	  <div>First Name:
 	    <input type="text" id="fName" name="fName"/>
@@ -48,9 +49,8 @@
 </div>
 
 <h1 style="text-align:center">Taco Payment</h1>
-
-
 </body>
+
 <footer>
   <div style="text-align:center">Taco Truck |<a href="#locations">123 Taco Avenue - Dallas - TX - 75205</a>| 214-MY-TACOS (214-698-2267) |<a href="#homepage">tacotruck.com</a>| Hours: 24/7</div>
 </footer>
