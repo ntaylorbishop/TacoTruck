@@ -17,6 +17,12 @@
     <div id="divider"></div>
   	</div>
 
+  	<h1>Order Confirmation</h1>
+  	<div id="confirm">
+  		<h2>Your order is confirmed!</h2>
+  		<p>Your order will be ready to pick up in 5-10 minutes.  Please pick it up at your chosen Taco Truck location.</p>
+  	</div>
+
 
 
 <footer>
