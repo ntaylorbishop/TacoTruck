@@ -1,3 +1,4 @@
+<?php 
 <!doctype html>
 <!--This is our login page.  It provides users with options to log in (if they have an account), sign up for an account, or order as a guest-->
 <html>
@@ -34,3 +35,4 @@
   <div style="text-align:center">Taco Truck |<a href="#locations">123 Taco Avenue - Dallas - TX - 75205</a>| 214-MY-TACOS (214-698-2267) |<a href="#homepage">tacotruck.com</a>| Hours: 24/7</div>
 </footer>
 </html>
+?>
