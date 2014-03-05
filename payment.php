@@ -30,15 +30,6 @@
       <div><label>Last Name:</label>
         <input type="text" id="lName" name="lName"/>
       </div>
-      <div><label>Email:</label>
-        <input type="email" id="email" name="email"/>
-      </div>
-      <div><label>Password:</label>
-        <input type="password" id="pwd" name="pwd"/>
-      </div>
-      <div><label>Confirm Password:</label>
-        <input type="password" id="pwdC" name="pwdC"/>
-      </div>
       <div><label>Card Provider:</label>
         <select id="ccType" name="ccType">
           <option value="AE">American Express</option>
