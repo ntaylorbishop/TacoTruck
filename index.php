@@ -52,7 +52,9 @@
     <form name="signup" action="account.php" method="post">
       <input type="submit" id="register" name="register" value="Sign Up"/>
     </form>
-    <input type="button" id="guest" name="guest" value="Order as a Guest"/>
+    <form name="guestorder" action="buildTaco.php" method="post">
+      <input type="button" id="guest" name="guest" value="Order as a Guest"/>
+    </form>
   </div>
   <div id="infoPane">
     <p>Welcome to TacoTruck.com, where you can order delicious tacos online!</p>
