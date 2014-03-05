@@ -29,4 +29,12 @@
       echo 'ERROR: ' . $e->getMessage();
     }
   }
+
+  function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
+    dbconnect("password");
+
+    try {
+      $stmt $conn->prepare('INSERT INTO Users VALUES (' . $fName . ',' . $lName . ',' . $email . ',' . $pw . ',' . $ccp . ',' . $ccnum . ');');
+    }
+  }
   ?>
