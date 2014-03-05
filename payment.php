@@ -21,7 +21,7 @@
  <div>
  <h1 style="text-align:center">Taco Payment</h1>
   	<form name="payment" action="user.html" method="post">
-  		<h2 style="text-align:center">Payment Information</h2>
+  		<h2 style="text-align:left">Payment Information</h2>
 	  <div>First Name:
 	    <input type="text" id="fName" name="fName"/>
 	  </div>
