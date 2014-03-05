@@ -13,19 +13,6 @@ body{
 	min-width:320px;
 }
 
-label {
-	display:inline-block;
-	float:left;
-	clear:left;
-	width:75px;
-	text-align:left;
-}
-
-input {
-	display: inline-block;
-	float: left;
-}
-
 #title {
 	color:#FFF;
 	padding-top:5px;
@@ -82,10 +69,10 @@ p {
 
 #footer {
 	text-decoration:none;
+	text-align:center;
 	color:#FFF;
 	font-size:15px;
 	padding-top:5px;
-	/*padding-top: 200px;*/
 }
 
 #links {

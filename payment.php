@@ -15,11 +15,12 @@
 
 <body>
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-<div id="links"> <a href="#homepage">Home</a> | <a href="#account">Account</a> | <a href="#logoff">Log Off</a>
-    <div id="divider"></div>
- </div>
- <div>
+  <div id="links"> <a href="#homepage">Home</a> &#x2022; <a href="#account">Account</a> &#x2022; <a href="#logoff">Log In</a></div>
+  <div class="divider"></div>
+</div>
+<h1 id="title">Create an Account</h1>
  <h1>Taco Payment</h1>
+ <div id="content">
   	<form name="payment" action="user.html" method="post">
   		<h2>Payment Information</h2>
 	  <div>First Name:
