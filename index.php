@@ -32,7 +32,7 @@
 </form>
 
 <?php
-  if(isset($_POST['submit'])) {
+  if(isset($_POST['LogIn'])) {
     if(checkCredentials($_POST['userN'], $_POST['pwd'])) {
       echo 'User logged in now';
     }
