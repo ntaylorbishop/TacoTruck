@@ -13,7 +13,6 @@ $(document).ready(function() {
 
 function checkPassword(pform) {
 	var str = pform.pwd.value;
-	alert(str);
 	if(str.length < 8) {
 		alert("Password Must be at Least 8 Characters");
 		pform.pwd.focus();
