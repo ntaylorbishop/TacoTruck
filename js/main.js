@@ -4,13 +4,9 @@ $(document).ready(function() {
 	resolution -= 800;
 	resolution /= 2;
 	$("#topBar").css('left',resolution);
-	resolution += 25;
 	$("#content").css('left',resolution);
-	
+	resolution += 220;
+	$("#title").css('padding-left',resolution);
 	$("#accordion").accordion();
-});
 
-
-$(function() {
-    $("#accordion").accordion();
 });

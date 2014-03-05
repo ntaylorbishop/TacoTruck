@@ -14,18 +14,21 @@
 </head>
 <body>
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-  <div id="links"> <a href="#homepage">Home</a> | <a href="#account">Account</a> | <a href="#cart">Cart</a> | <a href="#logoff">Log Off</a></div>
+  <div id="links"> <a href="#homepage">Home</a> &#x2022 <a href="#account">Account</a> &#x2022 <a href="#cart">Cart</a> &#x2022 <a href="#logoff">Log Off</a></div>
+  
   <div class="divider"></div>
-</div>
-<h1 style="text-align:center">Taco Truck</h1>
+  </div>
+
+<h1 id="title">Taco Truck</h1>
 <div id="content">
   <div id="loginPane">
+  <br/><br/><br/><br/>
     <form name="login" action="user.html" method="post">
-      <div>Username:
-        <input type="text" id="userN" name="userN"/>
+      <div><label>Email:</label>
+        <input type="email" id="userN" name="userN"/>
       </div>
-      <div>Password:
-        <input type="password" id="pwd" name="pwd"/>
+      <div><label>Password:</label>
+        <input type="password" id="pwd" name="pwd" required/>
       </div>
       <input type="submit" id="LogIn" name="LogIn" value="Log In"/>
     </form>
@@ -35,14 +38,12 @@
     <input type="button" id="guest" name="guest" value="Order as a Guest"/>
   </div>
   <div id="infoPane">
-    <div>Welcome to TacoTruck.com, where you can order delicious tacos online!</div>
-    <div>We are a family-owned restaurant that prepares the most delicious tacos in the Dallas/Fort Worth Metroplex.</div>
-    <div>We offer a variety of choices and an online ordering system to make it easier for you to get tacos whenever you want, at any of our locations!</div>
+    <p>Welcome to TacoTruck.com, where you can order delicious tacos online!</p>
+    <p>We are a family-owned restaurant that prepares the most delicious tacos in the Dallas/Fort Worth Metroplex.</p>
+    <p>We offer a variety of choices and an online ordering system to make it easier for you to get tacos whenever you want, at any of our locations!</p>
   </div>
 </div>
-<div class="divider"></div>
-<div id="footer">
-  <div style="text-align:center">Taco Truck |<a href="#locations">123 Taco Avenue - Dallas - TX - 75205</a>| 214-MY-TACOS (214-698-2267) |<a href="#homepage">tacotruck.com</a>| Hours: 24/7</div>
-</div>
+<div class="divider2"></div>
+
 </body>
 </html>
