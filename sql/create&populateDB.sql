@@ -1,0 +1,348 @@
+###Creating database and tables
+
+DROP DATABASE IF EXISTS tacotruck;
+
+CREATE DATABASE tacotruck;
+USE tacotruck;
+
+/*
+Table: Users
+Info:
+	UserId - auto incremented 
+	GivenName - First name of user
+	Surname - Last name of user 
+	EmailAddress - Valid email used to confirm user
+	Password - Used to login to the website. Hashed into bin
+	TelephoneNumber - Telephone number of user
+	CC_Provider - Type of credit card being used; IE Visa
+	CC_Number - Credit card number. Hashed
+*/
+CREATE TABLE Users  
+(
+	UserId 				INT UNSIGNED			NOT NULL AUTO_INCREMENT,
+	GivenName			VARCHAR(256)			NOT NULL,
+	LastName			VARCHAR(256)			NOT NULL,
+	EmailAddress		VARCHAR(256)			NOT NULL,
+	Password 			VARCHAR(255)			NOT NULL,
+	TelephoneNumber 	VARCHAR(256) 			NOT NULL,
+	CC_Provider			VARCHAR(255)			NOT NULL,
+	CC_Number			VARCHAR(255)			NOT NULL,			
+	PRIMARY KEY 		(UserId)
+);
+
+/*
+Table: Locations
+Info: Self explanatory
+*/
+CREATE TABLE Locations
+(
+	name			VARCHAR(256)				NOT NULL,
+	address			VARCHAR(256)				NOT NULL,
+	city			VARCHAR(100)				NOT NULL,
+	state			VARCHAR(2)					NOT NULL,
+	zipcode			INT UNSIGNED				NOT NULL,
+	PRIMARY KEY		(name)
+);
+
+/*
+Table: Orders
+Info:
+	OrderId - ID for one specific order
+	UserId - ID of user who made the order
+	Date - Date order was made
+	Total - Price total for order
+*/
+CREATE TABLE Orders
+(
+	OrderId 		INT UNSIGNED 				NOT NULL AUTO_INCREMENT,
+	UserId 			INT UNSIGNED 				NOT NULL,
+	Dates 			DATETIME	 			NOT NULL,
+	Total 			VARCHAR(10)				NOT NULL,
+	PRIMARY KEY 	(OrderId),
+	FOREIGN KEY 	(UserId)					REFERENCES Users(UserId)
+);
+
+/*
+Table: OrderItem
+Info:
+	OrderItemId - ID of taco
+	OrderId - ID of one order
+	Quantity - Quantity of taco
+*/
+CREATE TABLE OrderItem 
+(
+	OrderItemId		INT UNSIGNED				NOT NULL AUTO_INCREMENT,
+	OrderId 		INT UNSIGNED				NOT NULL,
+	Quantity 		INT UNSIGNED				NOT NULL,
+	PRIMARY KEY 	(OrderItemId),
+	FOREIGN KEY 	(OrderId) 					REFERENCES Orders(OrderId)
+);
+
+/*
+Table: Menu
+Info:
+	TacoFixinId - Auto incremented ID for every ingredient
+	itemType - Beans, cheese, rice, etc.
+	name - Name of ingredient
+	price - Price of ingredient
+	heatRating - Only pertains to sauces
+*/
+
+CREATE TABLE Menu 
+(
+    TacoFixinId   	INT UNSIGNED         		NOT NULL AUTO_INCREMENT,
+    itemType 		VARCHAR(255) 				NOT NULL,
+    name 			VARCHAR(255) 				NOT NULL,
+    price 			int(11) 					NOT NULL,
+    heatRating 		VARCHAR(11) 				DEFAULT '0',
+    PRIMARY KEY 	(TacoFixinId)
+);
+
+/*
+Table: OrderItemDetails
+Info:
+	OrderItemDetailId - Id for details : Primary Key
+	OrderItemId - Id for a specific taco
+	TacoFixinId - Id to reference a particular topping
+*/
+CREATE TABLE OrderItemDetails
+(
+	OrderItemDetailId	INT UNSIGNED			NOT NULL AUTO_INCREMENT,
+	OrderItemId 		INT UNSIGNED 			NOT NULL,
+	TacoFixinId 		INT UNSIGNED 			NOT NULL,
+	PRIMARY KEY 		(OrderItemDetailId),
+	FOREIGN KEY 		(TacoFixinId) 			REFERENCES Menu(TacoFixinId),
+	FOREIGN KEY 		(OrderItemId) 			REFERENCES OrderItem(OrderItemId)
+);
+
+##File to populate DB with
+
+##Populating Users
+
+INSERT INTO `Users` VALUES ('1', 'Bobby', 'Dickerson', 'BobbyDDickerson@armyspy.com', 'oom1duH0quei', '310-706-5713', 'Visa', '4581172250956295');
+INSERT INTO `Users` VALUES ('2', 'John', 'Horan', 'JohnMHoran@cuvox.de', 'uM0zohG5', '802-906-9635', 'Visa', '4833554465137429');
+INSERT INTO `Users` VALUES ('3', 'Lula', 'Benjamin', 'LulaTBenjamin@einrot.com', 'ohF0zooquu1', '641-740-3120', 'Visa', '4173199486453080');
+INSERT INTO `Users` VALUES ('4', 'Franklin', 'Hills', 'FranklinIHills@rhyta.com', 'eeWahXo5ee', '402-647-8591', 'Visa', '4937182773835950');
+INSERT INTO `Users` VALUES ('5', 'Samuel', 'Blevins', 'SamuelCBlevins@cuvox.de', 'TaeXo2OoV8u', '815-982-3812', 'American Express', '379823789416348');
+INSERT INTO `Users` VALUES ('6', 'William', 'Raymond', 'WilliamRRaymond@cuvox.de', 'Jiech8aiCh', '732-432-0200', 'American Express', '345650978113056');
+INSERT INTO `Users` VALUES ('7', 'Janice', 'Robertson', 'JaniceRRobertson@superrito.com', 'kohgae4OeGh', '479-214-4112', 'American Express', '375651072455574');
+INSERT INTO `Users` VALUES ('8', 'Lashawn', 'Lambert', 'LashawnTLambert@einrot.com', 'Lu0icho2yee', '859-955-0616', 'American Express', '342691124360073');
+INSERT INTO `Users` VALUES ('9', 'Vanessa', 'Seals', 'VanessaGSeals@dayrep.com', 'tooWee3Mo6ae', '417-629-4257', 'Mastercard', '5513462587501850');
+INSERT INTO `Users` VALUES ('10', 'Bethany', 'Tong', 'BethanyETong@dayrep.com', 'ahC7Veigha', '937-260-7087', 'Mastercard', '5345523630534291');
+
+##Populating Locations
+
+INSERT INTO `Locations` VALUES ('Klyde Warren Park', '2012 Woodall Rodgers Fwy', 'Dallas', 'TX', '75201');
+INSERT INTO `Locations` VALUES ('Southern Methodist Unversity', '6425 Boaz Lane', 'Dallas', 'TX', '75205');
+INSERT INTO `Locations` VALUES ('Addison Circle Park', 'Addison Circle', 'Addison', 'TX', '75001');
+INSERT INTO `Locations` VALUES ('Truck Yard', '5624 Sears St', 'Dallas', 'TX', '75206');
+INSERT INTO `Locations` VALUES ('Deep Ellum', '2630 Commerce St', 'Dallas', 'TX', '75226');
+
+##Populating Orders
+
+INSERT INTO `Orders` VALUES ('1', '1', '2014-12-22 05:57:19', '$68.15');
+INSERT INTO `Orders` VALUES ('2', '1', '2015-01-14 06:56:35', '$28.51');
+INSERT INTO `Orders` VALUES ('3', '2', '2013-12-23 12:50:40', '$91.76');
+INSERT INTO `Orders` VALUES ('4', '2', '2013-04-27 08:41:09', '$23.46');
+INSERT INTO `Orders` VALUES ('5', '3', '2014-02-13 18:33:08', '$9.26');
+INSERT INTO `Orders` VALUES ('6', '3', '2013-10-06 02:07:47', '$51.78');
+INSERT INTO `Orders` VALUES ('7', '4', '2014-12-09 01:25:38', '$18.32');
+INSERT INTO `Orders` VALUES ('8', '4', '2013-05-11 16:03:37', '$21.24');
+INSERT INTO `Orders` VALUES ('9', '5', '2014-09-19 15:17:08', '$98.65');
+INSERT INTO `Orders` VALUES ('10', '5', '2014-06-20 09:29:33', '$20.1');
+INSERT INTO `Orders` VALUES ('11', '6', '2013-03-25 01:03:52', '$22.82');
+INSERT INTO `Orders` VALUES ('12', '6', '2014-01-20 00:59:20', '$75.48');
+INSERT INTO `Orders` VALUES ('13', '7', '2014-09-27 12:52:10', '$52.44');
+INSERT INTO `Orders` VALUES ('14', '7', '2015-01-08 03:47:51', '$60.46');
+INSERT INTO `Orders` VALUES ('15', '8', '2013-10-19 08:53:41', '$22.7');
+INSERT INTO `Orders` VALUES ('16', '8', '2014-07-29 10:15:40', '$60.6');
+INSERT INTO `Orders` VALUES ('17', '9', '2014-07-09 07:47:40', '$70.42');
+INSERT INTO `Orders` VALUES ('18', '9', '2014-02-27 19:49:39', '$27.05');
+INSERT INTO `Orders` VALUES ('19', '10', '2014-05-23 16:23:46', '$32.9');
+INSERT INTO `Orders` VALUES ('20', '10', '2013-05-22 05:16:24', '$44.23');
+INSERT INTO `Orders` VALUES ('21', '1', '2014-07-14 14:44:12', '$37.92');
+INSERT INTO `Orders` VALUES ('22', '2', '2013-09-25 12:17:35', '$18.76');
+INSERT INTO `Orders` VALUES ('23', '3', '2014-02-21 09:49:30', '$34.4');
+INSERT INTO `Orders` VALUES ('24', '4', '2014-05-08 02:34:09', '$75.92');
+INSERT INTO `Orders` VALUES ('25', '5', '2014-10-28 19:26:35', '$69.64');
+INSERT INTO `Orders` VALUES ('26', '6', '2013-05-22 00:51:56', '$13.3');
+INSERT INTO `Orders` VALUES ('27', '7', '2014-02-28 12:10:06', '$1.69');
+INSERT INTO `Orders` VALUES ('28', '8', '2014-01-16 14:24:49', '$56.42');
+INSERT INTO `Orders` VALUES ('29', '9', '2013-03-21 09:28:10', '$15.94');
+
+##Populating OrderItem
+
+INSERT INTO `OrderItem` VALUES ('1', '1', '1');
+INSERT INTO `OrderItem` VALUES ('2', '1', '2');
+INSERT INTO `OrderItem` VALUES ('3', '1', '1');
+INSERT INTO `OrderItem` VALUES ('4', '1', '2');
+INSERT INTO `OrderItem` VALUES ('5', '2', '2');
+INSERT INTO `OrderItem` VALUES ('6', '2', '2');
+INSERT INTO `OrderItem` VALUES ('7', '2', '2');
+INSERT INTO `OrderItem` VALUES ('8', '2', '3');
+INSERT INTO `OrderItem` VALUES ('9', '3', '1');
+INSERT INTO `OrderItem` VALUES ('10', '3', '1');
+INSERT INTO `OrderItem` VALUES ('11', '3', '1');
+INSERT INTO `OrderItem` VALUES ('12', '3', '1');
+INSERT INTO `OrderItem` VALUES ('13', '4', '1');
+INSERT INTO `OrderItem` VALUES ('14', '4', '1');
+INSERT INTO `OrderItem` VALUES ('15', '4', '1');
+INSERT INTO `OrderItem` VALUES ('16', '4', '3');
+INSERT INTO `OrderItem` VALUES ('17', '5', '2');
+INSERT INTO `OrderItem` VALUES ('18', '5', '1');
+INSERT INTO `OrderItem` VALUES ('19', '5', '2');
+INSERT INTO `OrderItem` VALUES ('20', '5', '3');
+
+##Populating Menu
+
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('type', 'Steak', '1', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('type', 'Chicken', '0.75', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('type', 'Carnitas', '1', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('type', 'Veggie', '0.5', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('tortillas', 'Flour', '0.25', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('tortillas', 'Cayenne', '0.35', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('tortillas', 'Wheat', '0.35', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('tortillas', 'Spinach', '0.3', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('rice', 'Cilantro Rice', '0.25', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('rice', 'Spanish Rice', '0.25', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('cheese', 'Queso Fresco', '0.5', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('cheese', 'Cheddar/Jack Mix', '0.35', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('cheese', 'Monterrey Jack', '0.35', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('beans', 'Refried Beans', '0.35', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('beans', 'Whole Pinto Beans', '0.25', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('beans', 'Black Beans', '0.1', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Hot Tomatillo', '0', '3');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Death', '0', '4');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Fresh Lime Juice', '0', '1');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Bad Ass BBQ', '0', '2');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Mild Tomatillo', '0', '2');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Ranch', '0', '1');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'No Sauce', '0', '0');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Habenero', '0', '3');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Salsa', '0', '2');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Ancho', '0', '1');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Tomatillo', '0', '1');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('sauces', 'Herb Vinigrette', '0', '1');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Poblano Salsa', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Roasted Garlic', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Peppers/Onions', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Red Onion', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Jalapenos', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Pico de Gallo', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'White Onion', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Tomatoes', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Cilantro', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Tortilla Strips', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Lettuce', '0', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'X - Extra Meat/Veggies', '1', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'Sour Cream', '0.75', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'Guacamole', '0.75', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'Queso', '0.5', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'Sliced Avocado', '0.75', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'Bacon', '0.5', '');
+
+##Populating OrderItemDetails
+
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('1', '1', '1');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('2', '1', '5');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('3', '1', '16');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('4', '2', '2');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('5', '2', '6');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('6', '2', '9');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('7', '2', '16');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('8', '3', '3');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('9', '3', '7');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('10', '3', '20');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('11', '3', '41');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('12', '4', '4');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('13', '4', '8');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('14', '4', '18');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('15', '5', '4');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('16', '5', '8');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('17', '5', '32');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('18', '5', '11');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('19', '5', '30');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('20', '5', '36');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('21', '5', '14');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('22', '5', '40');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('23', '6', '3');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('24', '6', '7');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('25', '6', '9');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('26', '6', '16');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('27', '6', '18');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('28', '6', '30');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('29', '6', '31');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('30', '6', '40');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('31', '6', '41');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('32', '7', '2');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('33', '7', '6');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('34', '7', '40');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('35', '7', '41');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('36', '7', '42');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('37', '8', '1');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('38', '8', '5');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('39', '8', '9');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('40', '8', '14');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('41', '8', '38');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('42', '9', '1');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('43', '9', '5');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('44', '9', '26');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('45', '9', '33');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('46', '9', '39');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('47', '10', '2');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('48', '10', '5');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('49', '10', '11');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('50', '10', '10');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('51', '10', '14');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('52', '10', '18');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('53', '10', '29');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('54', '10', '30');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('55', '10', '31');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('56', '10', '32');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('57', '11', '3');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('58', '11', '5');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('59', '11', '38');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('60', '11', '30');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('61', '12', '4');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('62', '12', '6');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('63', '12', '9');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('64', '12', '16');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('65', '12', '17');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('66', '12', '44');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('67', '13', '4');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('68', '13', '6');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('69', '13', '16');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('70', '14', '3');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('71', '14', '5');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('72', '14', '10');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('73', '14', '13');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('74', '14', '20');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('75', '14', '30');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('76', '15', '2');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('77', '15', '7');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('78', '15', '25');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('79', '15', '32');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('80', '15', '33');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('81', '16', '1');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('82', '16', '8');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('83', '16', '9');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('84', '16', '21');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('85', '16', '35');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('86', '17', '1');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('87', '17', '8');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('88', '17', '22');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('89', '17', '30');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('90', '17', '31');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('91', '18', '2');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('92', '18', '8');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('93', '19', '3');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('94', '19', '7');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('95', '19', '33');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('96', '20', '4');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('97', '20', '6');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('98', '20', '30');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('99', '20', '31');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('100', '20', '32');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('101', '20', '33');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('102', '20', '39');
+INSERT INTO `tacotruck`.`OrderItemDetails` (`OrderItemDetailId`, `OrderItemId`, `TacoFixinId`) VALUES ('103', '20', '40');
