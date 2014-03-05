@@ -52,7 +52,7 @@
   <input type="range" name="Quantity" min="1" max="5" />
   <input type="submit" value="Add to Order" />
 </form>
-<form id="currentOrder">
+<form id="currentOrder" action="payment.php" method="post">
   <input type="submit" value="Proceed to Check Out" />
 </form>
 <footer>
