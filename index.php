@@ -15,6 +15,7 @@
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/homePage.js"></script>
 </head>
 <body>
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
