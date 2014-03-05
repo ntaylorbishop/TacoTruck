@@ -17,7 +17,9 @@ function getRecentOrder($userID) {
 	$sql = "SELECT * FROM Orders WHERE UserId=:UserId";
 	try {
 		$db = getConnection();
-		$stmt = $db->query($sql);  
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("UserId", $userId);
+		$stmt->execute();  
 		$order = $stmt->fetchAll(PDO::FETCH_OBJ);
 		$db = null;
 		echo '{"recent_order": ' . json_encode($order) . '}';
