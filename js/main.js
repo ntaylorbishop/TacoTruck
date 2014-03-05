@@ -19,3 +19,17 @@ function checkPassword(pform) {
 		return false;
 	}
 }
+
+function checkRegister(pform) {
+	var str = pform.pwd.value;
+	var str1 = pform.pwdC.value;
+	if(str != str1) {
+		alert("Password and Confirm Password Do Not Match");
+		pform.pwd.focus();
+		return false;
+	} else if (str.length < 8) {
+		alert("Password Less than 8 Characters");
+		pform.pwd.focus();
+		return false;
+	}
+}

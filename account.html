@@ -4,28 +4,35 @@
 <head>
 	<title>Taco Truck -- Create Account</title>
 	<link href="css/styles.css" rel="stylesheet">
+<link href="css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<script src="js/jQuery.js"></script>
+<script src="js/jquery-ui-1.10.4.custom.js"></script>
+<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="js/main.js"></script>
+    
 </head>
 <body>	
 	<div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-    <div id="links"> <a href="#homepage">Home</a> 
-    <div id="divider"></div>
-  	</div>
+  <div id="links"> <a href="#homepage">Home</a> &#x2022; <a href="#account">Account</a> &#x2022; <a href="#cart">Cart</a> &#x2022; <a href="#logoff">Log Off</a></div>
+  
+  <div class="divider"></div>
+  </div>
   	<h1 style="text-align:center">Create a Taco Truck Account</h1>
-	<form name="payment" action="user.html" method="post">
+	<form name="payment" action="user.html" method="post" onsubmit="checkRegister(this)">
 	  <div>First Name:
-	    <input type="text" id="fName" name="fName"/>
+	    <input type="text" id="fName" name="fName" required/>
 	  </div>
 	  <div>Last Name:
-	    <input type="text" id="lName" name="lName"/>
+	    <input type="text" id="lName" name="lName" required/>
 	  </div>
 	  <div>Email:
-	    <input type="email" id="email" name="email"/>
+	    <input type="email" id="email" name="email" required/>
 	  </div>
 	  <div>Password:
-	    <input type="password" id="pwd" name="pwd"/>
+	    <input type="password" id="pwd" name="pwd" required/>
 	  </div>
 	  <div>Confirm Password:
-	    <input type="password" id="pwdC" name="pwdC"/>
+	    <input type="password" id="pwdC" name="pwdC" required/>
 	  </div>
 	  <div>Card Provider:
 	    <select id="ccType" name="ccType">
@@ -35,9 +42,9 @@
 	    </select>
 	  </div>
 	  <div>Card Number:
-	    <input type="text" id="ccNum" name="ccNum"/>
+	    <input type="text" id="ccNum" name="ccNum" required/>
 	  </div>
 	  <input type="submit" id="register" name="register" value="Sign Up"/>
 	</form>
-</body>
+</div></body>
 </html>
