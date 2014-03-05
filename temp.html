@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-  <div id="links"> <a href="#homepage">Home</a> &#x2022 <a href="#account">Account</a> &#x2022 <a href="#cart">Cart</a> &#x2022 <a href="#logoff">Log Off</a></div>
+  <div id="links"> <a href="#homepage">Home</a> &#x2022; <a href="#account">Account</a> &#x2022; <a href="#cart">Cart</a> &#x2022; <a href="#logoff">Log Off</a></div>
   
   <div class="divider"></div>
   </div>
@@ -23,7 +23,7 @@
 <div id="content">
   <div id="loginPane">
   <br/><br/><br/><br/>
-    <form name="login" action="user.html" method="post">
+    <form name="login" action="user.html" method="post" onSubmit="return checkPassword(this)">
       <div><label>Email:</label>
         <input type="email" id="userN" name="userN"/>
       </div>
