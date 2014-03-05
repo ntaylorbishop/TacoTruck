@@ -1,6 +1,5 @@
 ###Creating database and tables
 
-DROP DATABASE IF EXISTS tacotruck;
 
 CREATE DATABASE tacotruck;
 USE tacotruck;
