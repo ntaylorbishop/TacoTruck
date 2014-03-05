@@ -52,6 +52,18 @@
 </div>
 </div>
 
+<div>
+	<h2>Your Order</h2>
+	<ul>
+		<li>1 Beef Fajita Taco    $3.75</li>
+		<li>1 Brushfire Taco      $4.15</li>
+	</ul>
+	<h3>Order Total:  </h3>
+	<form name="checkout" action="confirmation.php" method="post">
+		<input type="submit" id="checkout" name="checkout" value="Check Out"/>
+	</form>
+</div>
+
 <footer>
   <div>Taco Truck |<a href="#locations">123 Taco Avenue - Dallas - TX - 75205</a>| 214-MY-TACOS (214-698-2267) |<a href="#homepage">tacotruck.com</a>| Hours: 24/7</div>
 </footer>
