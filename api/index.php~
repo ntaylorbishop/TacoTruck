@@ -35,7 +35,7 @@ function getRecentOrder($userId) {
 function getLocations() {
 	$sql = "SELECT * FROM Locations";
 	try {
-		$db = getConnection();
+		$db = dbconnect();
 		$stmt = $db->query($sql);  
 		//$stmt->bindParam("id", $id);
 		//$stmt->execute();
@@ -51,7 +51,7 @@ function verifyRegistered($email, $password) {
 	$sql = "SELECT * FROM Users WHERE EmailAddress=:email AND Password=:pass;";
 	
 	try {
-		$db = getConnection();
+		$db = dbconnect();
 		$stmt = $db->prepare($sql);  
 		$stmt->bindParam("email", $email);
 		$stmt->bindParam("pass", $password);

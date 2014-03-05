@@ -37,8 +37,6 @@ function getLocations() {
 	try {
 		$db = dbconnect();
 		$stmt = $db->query($sql);  
-		//$stmt->bindParam("id", $id);
-		//$stmt->execute();
 		$locations = $stmt->fetchAll(PDO::FETCH_OBJ);  
 		$db = null;
 		echo '{"locations": ' . json_encode($locations) . '}'; 
