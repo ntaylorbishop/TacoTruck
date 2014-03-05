@@ -19,7 +19,7 @@
 	<h1 style="text-align:center">Taco Truck</h1>
 	<div id="lastOrder" style="text-align:center">
 		<h2>Your last order was:</h2>
-		<ul style="list-style=none;">
+		<ul>
 			<li>1 Beef Fajita Taco        3.75</li>
 			<li>1 Brushfire Taco          4.15</li>
 		</ul>
