@@ -41,6 +41,8 @@
     }
   } 
 ?>
+  
+
 <form name="signup" action="account.php" method="post">
   <input type="submit" id="register" name="register" value="Sign Up"/>
 </form>

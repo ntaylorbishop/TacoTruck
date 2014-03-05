@@ -19,6 +19,10 @@
 	<h1 style="text-align:center">Taco Truck</h1>
 	<div id="lastOrder" style="text-align:center">
 		<h2>Your last order was:</h2>
+		<ul>
+			<li>1 Beef Fajita Taco        3.75</li>
+			<li>1 Brushfire Taco          4.15</li>
+		</ul>
 		<form name="repeat" action="payment.php" method="post">
 			<input type="submit" id="repeat" value="Repeat Last Order"/>
 		</form>
