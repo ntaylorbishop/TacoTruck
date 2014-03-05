@@ -54,10 +54,23 @@
 
 <div>
 	<h2>Your Order</h2>
-	<ul>
-		<li>1 Beef Fajita Taco    $3.75</li>
-		<li>1 Brushfire Taco      $4.15</li>
-	</ul>
+	<table>
+		<tr>
+			<th>Quantity</th>
+			<th>Taco</th>
+			<th>Price</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Beef Fajita</td>
+			<td>3.75</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Brushfire</td>
+			<td>4.15</td>
+		</tr>
+	</table>
 	<h3>Order Total:  </h3>
 	<form name="checkout" action="confirmation.php" method="post">
 		<input type="submit" id="checkout" name="checkout" value="Check Out"/>
