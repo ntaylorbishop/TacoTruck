@@ -2,7 +2,7 @@
   require('php/lib.php');
 ?>
 
-<!doctype html>
+<!DOCTYPE HTML>
 <!--This is our login page.  It provides users with options to log in (if they have an account), sign up for an account, or order as a guest ok-->
 <html>
 <head>

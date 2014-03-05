@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <!--This page allows users to create an account with Taco Truck.-->
 <html>
 <head>
