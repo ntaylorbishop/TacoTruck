@@ -13,14 +13,17 @@ $app->delete('/wines/:id',	'deleteWine');*/
 //
 $app->run();
 
-function getRecentOrder($userID) {
-	$sql = "SELECT * FROM Orders WHERE UserId=:UserId";
+function getRecentOrder($userId) {
+	$sql = "SELECT t1.* FROM Orders t1 INNER JOIN (
+  			SELECT max(Dates) MostRecentOrder
+  			FROM Orders WHERE UserId=:UserId) t2
+  			ON t1.Dates = t2.MostRecentOrder;";
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam("UserId", $userId);
 		$stmt->execute();  
-		$order = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$order = $stmt->fetchObject();
 		$db = null;
 		echo '{"recent_order": ' . json_encode($order) . '}';
 	} catch(PDOException $e) {
