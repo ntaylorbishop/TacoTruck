@@ -4,28 +4,28 @@ require 'Slim/Slim.php';
 
 $app = new Slim();
 
-$app->get('/wines', 'getWines');
-$app->get('/wines/:id',	'getWine');
+$app->get('/recent_order/:UserId', 'getRecentOrder');
+/*$app->get('/wines/:id',	'getWine');
 $app->get('/wines/search/:query', 'findByName');
 $app->post('/wines', 'addWine');
 $app->put('/wines/:id', 'updateWine');
-$app->delete('/wines/:id',	'deleteWine');
+$app->delete('/wines/:id',	'deleteWine');*/
 
 $app->run();
 
-function getWines() {
-	$sql = "select * FROM wine ORDER BY name";
+function getRecentOrder($userID) {
+	$sql = "SELECT * FROM Orders WHERE UserId=:UserId";
 	try {
 		$db = getConnection();
 		$stmt = $db->query($sql);  
-		$wines = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$order = $stmt->fetchAll(PDO::FETCH_OBJ);
 		$db = null;
-		echo '{"wine": ' . json_encode($wines) . '}';
+		echo '{"recent_order": ' . json_encode($order) . '}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
-
+/*
 function getWine($id) {
 	$sql = "SELECT * FROM wine WHERE id=:id";
 	try {
@@ -116,12 +116,12 @@ function findByName($query) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
-
+*/
 function getConnection() {
 	$dbhost="localhost";
 	$dbuser="root";
-	$dbpass="mysql";
-	$dbname="cellar";
+	$dbpass="password";
+	$dbname="tacotruck";
 	$dbh = new PDO("mysql:host=localhost;dbname=cellar;charset=utf8", $dbuser, $dbpass);	
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	return $dbh;
