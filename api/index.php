@@ -118,11 +118,9 @@ function findByName($query) {
 }
 */
 function getConnection() {
-	$dbhost="localhost";
 	$dbuser="root";
 	$dbpass="password";
-	$dbname="tacotruck";
-	$dbh = new PDO("mysql:host=localhost;dbname=cellar;charset=utf8", $dbuser, $dbpass);	
+	$dbh = new PDO("mysql:host=localhost;dbname=tacotruck;charset=utf8", $dbuser, $dbpass);	
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	return $dbh;
 }
