@@ -47,7 +47,7 @@
 	  <div>Card Number:
 	    <input type="text" id="ccNum" name="ccNum"/>
 	  </div>
-	  <input type="submit" id="register" name="register" value="Sign Up"/>
+	  <!--<input type="submit" id="register" name="register" value="Sign Up"/>-->
 	</form>
 </div>
 </div>
