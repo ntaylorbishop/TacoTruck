@@ -1,7 +1,7 @@
 <?php
-  function dbconnect($pw) {
+  function dbconnect() {
     $username = "root";
-    $password = $pw;
+    $password = "password";
 
     try {
       $conn = new PDO('mysql:host=localhost;dbname=tacotruck', $username, $password);
@@ -14,7 +14,7 @@
   }
 
   function checkCredentials($user, $pw) {
-    dbconnect("password");
+    dbconnect();
 
     try {
       $stmt = $conn->prepare('SELECT * FROM Users WHERE EmailAddress = :email AND SELECT * FROM Users WHERE Password = :pw');
@@ -33,7 +33,7 @@
   }
 
   function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
-    dbconnect("password");
+    dbconnect();
 
     try {
       $stmt = $conn->prepare('INSERT INTO Users VALUES (:fName, :lName, :email, :pw, :ccp, :ccnum');
