@@ -23,7 +23,7 @@ INSERT INTO `Locations` VALUES ('Deep Ellum', '2630 Commerce St', 'Dallas', 'TX'
 
 ##Populating Orders
 
-INSERT INTO `Orders` VALUES ('1', '1', '12/22/2014 5:57:19', '$68.15');
+INSERT INTO `Orders` VALUES ('1', '1', '2014-12-22 05:57:19', '$68.15');
 INSERT INTO `Orders` VALUES ('2', '1', '1/14/2015 6:56:35', '$28.51');
 INSERT INTO `Orders` VALUES ('3', '2', '12/23/2013 12:50:40', '$91.76');
 INSERT INTO `Orders` VALUES ('4', '2', '4/27/2013 8:41:09', '$23.46');

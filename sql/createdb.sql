@@ -56,8 +56,8 @@ CREATE TABLE Orders
 (
 	OrderId 		INT UNSIGNED 				NOT NULL AUTO_INCREMENT,
 	UserId 			INT UNSIGNED 				NOT NULL,
-	Dates 			DATE			 			NOT NULL,
-	Total 			DECIMAL(3,2)				NOT NULL,
+	Dates 			DATETIME	 			NOT NULL,
+	Total 			VARCHAR(10)				NOT NULL,
 	PRIMARY KEY 	(OrderId),
 	FOREIGN KEY 	(UserId)					REFERENCES Users(UserId)
 );
