@@ -28,7 +28,7 @@
     <br/>
     <br/>
     <br/>
-    <form name="login" action="user.html" method="post" onSubmit="return checkPassword(this)">
+    <form name="login" action="user.php" method="post" onSubmit="return checkPassword(this)">
       <div>
         <label>Email:</label>
         <input type="email" id="userN" name="userN"/>
@@ -49,7 +49,7 @@
     }
   } 
 ?>
-    <form name="signup" action="account.html" method="post">
+    <form name="signup" action="account.php" method="post">
       <input type="submit" id="register" name="register" value="Sign Up"/>
     </form>
     <input type="button" id="guest" name="guest" value="Order as a Guest"/>
