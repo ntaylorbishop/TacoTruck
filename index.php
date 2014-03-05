@@ -53,7 +53,7 @@
       <input type="submit" id="register" name="register" value="Sign Up"/>
     </form>
     <form name="guestorder" action="buildTaco.php" method="post">
-      <input type="button" id="guest" name="guest" value="Order as a Guest"/>
+      <input type="submit" id="guest" name="guest" value="Order as a Guest"/>
     </form>
   </div>
   <div id="infoPane">
