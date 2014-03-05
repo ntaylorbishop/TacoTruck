@@ -5,12 +5,12 @@ require 'Slim/Slim.php';
 $app = new Slim();
 
 $app->get('/recent_order/:UserId', 'getRecentOrder');
-/*$app->get('/wines/:id',	'getWine');
-$app->get('/wines/search/:query', 'findByName');
-$app->post('/wines', 'addWine');
+$app->get('/locations',	'getLocations');
+$app->get('/verify/:email/:pass', 'verifyRegistered');
+/*$app->post('/wines', 'addWine');
 $app->put('/wines/:id', 'updateWine');
 $app->delete('/wines/:id',	'deleteWine');*/
-//
+
 $app->run();
 
 function getRecentOrder($userId) {
@@ -30,46 +30,40 @@ function getRecentOrder($userId) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
+
+function getLocations() {
+	$sql = "SELECT * FROM Locations";
+	try {
+		$db = getConnection();
+		$stmt = $db->query($sql);  
+		//$stmt->bindParam("id", $id);
+		//$stmt->execute();
+		$locations = $stmt->fetchAll(PDO::FETCH_OBJ);  
+		$db = null;
+		echo '{"locations": ' . json_encode($locations) . '}'; 
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
+function verifyRegistered($email, $password) {
+	$sql = "SELECT * FROM Users WHERE EmailAddress=:email AND Password=:pass;";
+	
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);  
+		$stmt->bindParam("email", $email);
+		$stmt->bindParam("pass", $password);
+		$stmt->execute();
+		$db = null;
+		if($stmt->rowCount() == 1)
+			echo '{"registered": true}'; 
+		else echo '{"registered": false}';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
 /*
-function getWine($id) {
-	$sql = "SELECT * FROM wine WHERE id=:id";
-	try {
-		$db = getConnection();
-		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("id", $id);
-		$stmt->execute();
-		$wine = $stmt->fetchObject();  
-		$db = null;
-		echo json_encode($wine); 
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
-}
-
-function addWine() {
-	error_log('addWine\n', 3, '/var/tmp/php.log');
-	$request = Slim::getInstance()->request();
-	$wine = json_decode($request->getBody());
-	$sql = "INSERT INTO wine (name, grapes, country, region, year, description) VALUES (:name, :grapes, :country, :region, :year, :description)";
-	try {
-		$db = getConnection();
-		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("name", $wine->name);
-		$stmt->bindParam("grapes", $wine->grapes);
-		$stmt->bindParam("country", $wine->country);
-		$stmt->bindParam("region", $wine->region);
-		$stmt->bindParam("year", $wine->year);
-		$stmt->bindParam("description", $wine->description);
-		$stmt->execute();
-		$wine->id = $db->lastInsertId();
-		$db = null;
-		echo json_encode($wine); 
-	} catch(PDOException $e) {
-		error_log($e->getMessage(), 3, '/var/tmp/php.log');
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
-}
-
 function updateWine($id) {
 	$request = Slim::getInstance()->request();
 	$body = $request->getBody();
