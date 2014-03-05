@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* CSS Document */
+
+label {
+	display:inline-block;
+	float:left;
+	clear:left;
+	width:135px;
+	padding-top:3px;
+	text-align:left;
+}
+
+input {
+	display: inline-block;
+	float: left;
+}
+
+select {
+	display: inline-block;
+	float:left;
+}
+
+#order {
+	width:40%;
+	float:left;
+}
+
+#payment {
+	width:60%;
+	float:left;
+}
