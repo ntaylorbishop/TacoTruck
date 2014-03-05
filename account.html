@@ -16,30 +16,31 @@
   <div class="divider"></div>
 </div>
 <h1 style="text-align:center">Create a Taco Truck Account</h1>
+<div id="content">
 <form name="payment" action="user.html" method="post" onsubmit="checkRegister(this)">
-  <div>First Name:
+  <div><label>First Name:</label>
     <input type="text" id="fName" name="fName" required/>
   </div>
-  <div>Last Name:
+  <div><label>Last Name:</label>
     <input type="text" id="lName" name="lName" required/>
   </div>
-  <div>Email:
+  <div><label>Email:</label>
     <input type="email" id="email" name="email" required/>
   </div>
-  <div>Password:
+  <div><label>Password:</label>
     <input type="password" id="pwd" name="pwd" required/>
   </div>
-  <div>Confirm Password:
+  <div><label>Confirm Password:</label>
     <input type="password" id="pwdC" name="pwdC" required/>
   </div>
-  <div>Card Provider:
+  <div><label>Card Provider:</label>
     <select id="ccType" name="ccType">
       <option value="AE">American Express</option>
       <option value="MC">MasterCard</option>
       <option value="V">Visa</option>
     </select>
   </div>
-  <div>Card Number:
+  <div><label>Card Number:</label>
     <input type="text" id="ccNum" name="ccNum" required/>
   </div>
   <input type="submit" id="register" name="register" value="Sign Up"/>
