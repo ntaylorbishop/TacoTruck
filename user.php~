@@ -22,10 +22,10 @@
 <div id="content">
 	<div id="lastOrder">
 		<h2>Your last order was:</h2>
-		<table>
+		<table id="recentOrder">
 			<tr>
-				<th>Quantity</th>
-				<th>Taco</th>
+				<th>Order Number</th>
+				<th>Date</th>
 				<th>Price</th>
 			</tr>
 			<tr>
@@ -47,6 +47,7 @@
 		</form>
 	</div>
 </div>
+<div class="divider2"></div>
 <div id="footer">
   <div>Taco Truck |<a href="#locations">123 Taco Avenue - Dallas - TX - 75205</a>| 214-MY-TACOS (214-698-2267) |<a href="#homepage">tacotruck.com</a>| Hours: 24/7</div>
 </div>

@@ -2,6 +2,7 @@ var root_url = "http://localhost/TacoTruck/api/";
 
 // JavaScript Document
 $(document).ready(function() {
+	alert("test main.js");
     var resolution = $(window).width();
 	resolution -= 800;
 	resolution /= 2;
@@ -42,8 +43,6 @@ function checkRegister(pform) {
 function checkLogin(lForm) {
 	var email = lForm.email.value;
 	var pw = lForm.pwd.value;
-	var canLogin = false;
-	console.log('findAll');
 	var check = $.ajax({
 		type: 'GET',
 		url: root_url + 'verify/' + email + '/' + pw,
@@ -52,7 +51,7 @@ function checkLogin(lForm) {
 	});
 	check = check.responseJSON;
 	check = check.registered;
-	if(check === "false"){
+	if(check === false){
 		alert("Email and Password Do Not Match");
 	}
 	return check;

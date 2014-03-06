@@ -8,6 +8,7 @@ $app = new Slim();
 $app->get('/recent_order/:UserId', 'getRecentOrder');
 $app->get('/locations',	'getLocations');
 $app->get('/verify/:email/:pass', 'verifyRegistered');
+$app->get('/menu/:itemType', 'getMenuItems');
 /*$app->post('/wines', 'addWine');
 $app->put('/wines/:id', 'updateWine');
 $app->delete('/wines/:id',	'deleteWine');*/
@@ -58,6 +59,21 @@ function verifyRegistered($email, $password) {
 		if($stmt->rowCount() == 1)
 			echo '{"registered": true}'; 
 		else echo '{"registered": false}';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
+function getMenuItems($itemType) {
+	$sql = "SELECT * FROM Menu WHERE itemType=:itemType";
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);  
+		$stmt->bindParam("itemType", $itemType);
+		$stmt->execute();
+		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
+		$db = null;
+		echo json_encode($item); 
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}

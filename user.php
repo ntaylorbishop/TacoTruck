@@ -22,22 +22,13 @@
 <div id="content">
 	<div id="lastOrder">
 		<h2>Your last order was:</h2>
-		<table>
+		<table id="recentOrder">
 			<tr>
-				<th>Quantity</th>
-				<th>Taco</th>
+				<th>Order Number</th>
+				<th>Date</th>
 				<th>Price</th>
 			</tr>
-			<tr>
-				<td>1</td>
-				<td>Beef Fajita</td>
-				<td>3.75</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>Brushfire</td>
-				<td>4.15</td>
-			</tr>
+			
 		</table>
 		<form name="repeat" action="payment.php" method="post">
 			<input type="submit" id="repeat" value="Repeat Last Order"/>

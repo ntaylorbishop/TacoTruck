@@ -42,8 +42,6 @@ function checkRegister(pform) {
 function checkLogin(lForm) {
 	var email = lForm.email.value;
 	var pw = lForm.pwd.value;
-	var canLogin = false;
-	console.log('findAll');
 	var check = $.ajax({
 		type: 'GET',
 		url: root_url + 'verify/' + email + '/' + pw,
