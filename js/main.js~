@@ -2,7 +2,6 @@ var root_url = "http://localhost/TacoTruck/api/";
 
 // JavaScript Document
 $(document).ready(function() {
-	alert("test main.js");
     var resolution = $(window).width();
 	resolution -= 800;
 	resolution /= 2;

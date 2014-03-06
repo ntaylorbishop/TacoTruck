@@ -9,7 +9,6 @@ $(document).ready(function() {
 	$("#content").css('left',resolution);
 	resolution += 220;
 	$("#title").css('padding-left',resolution);
-	$("#accordion").accordion();
 
 });
 

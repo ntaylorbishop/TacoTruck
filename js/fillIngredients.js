@@ -9,14 +9,10 @@ $(document).ready(function() {
 	});
 	alert(JSON.stringify(type));
 	var type2 = type.responseJSON;
-	for(var i = 0; i < 4; i++) {
-		alert(type2[i].name);
-	}
-	var type2 = $("#accordion");
-	type2.append("<h3 id=\"" + type.responseJSON + "\">" + type.responseJSON + "</h3>");
-
+	var type3 = $("#accordion");
+	type3.append("<h3 id=\"type\">Filling</h3><div>");
 	for(var i = 0; i < 4; i++){
-		$("#"+type.responseJSON).append("<p>Test</p>" );
+		$("#type").append("<input type=\"radio\" name=\"filling\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
 	}
 	/*var tortillas = $.ajax({
 		type: 'GET',
@@ -48,4 +44,6 @@ $(document).ready(function() {
 		dataType: "json",
 		async: false,
 	});*/
+
+	$("#accordion").accordion();
 });
