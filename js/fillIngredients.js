@@ -88,7 +88,7 @@ var type2 = sauces.responseJSON;
 	type3.append("<div id=\"saucesFill\"></div>");
 
 	for(var i = 0; i < 12; i++){
-		$("#saucesFill").append("<input type=\"radio\" name=\"sauces\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#saucesFill").append("<input type=\"checkbox\" name=\"sauces\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
 	}
 
 var vegetables = $.ajax({
@@ -103,9 +103,11 @@ var type2 = vegetables.responseJSON;
 	type3.append("<div id=\"vegFill\"></div>");
 
 	for(var i = 0; i < 2; i++){
-		$("#vegFill").append("<input type=\"radio\" name=\"veggies\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#vegFill").append("<input type=\"checkbox\" name=\"veggies\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
 	}
 
-	$("#accordion").accordion();
+	$("#accordion").accordion({
+		event: "click hoverintent"
+	});
 
 });
