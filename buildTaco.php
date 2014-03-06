@@ -40,6 +40,16 @@
         <input type="radio" name="tortilla" value="flour" />
         Flour<br />
       </div>
+      <h3>Rice</h3>
+      <div/>
+      <h3>Cheese</h3>
+      <div/>
+      <h3>Bean</h3>
+      <div/>
+      <h3>Sauce</h3>
+      <div/>
+      <h3>Vegetables</h3>
+      <div/>
       <h3>Extras</h3>
       <div>
         <input type="checkbox" name="extras" value="guac" />
