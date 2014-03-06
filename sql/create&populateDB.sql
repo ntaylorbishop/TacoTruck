@@ -55,8 +55,8 @@ CREATE TABLE Orders
 (
 	OrderId 		INT UNSIGNED 				NOT NULL AUTO_INCREMENT,
 	UserId 			INT UNSIGNED 				NOT NULL,
-	Dates 			DATETIME	 			NOT NULL,
-	Total 			VARCHAR(10)				NOT NULL,
+	Dates 			DATETIME	 				NOT NULL,
+	Total 			VARCHAR(10)					NOT NULL,
 	PRIMARY KEY 	(OrderId),
 	FOREIGN KEY 	(UserId)					REFERENCES Users(UserId)
 );
@@ -92,7 +92,7 @@ CREATE TABLE Menu
     TacoFixinId   	INT UNSIGNED         		NOT NULL AUTO_INCREMENT,
     itemType 		VARCHAR(255) 				NOT NULL,
     name 			VARCHAR(255) 				NOT NULL,
-    price 			int(11) 					NOT NULL,
+    price 			VARCHAR(11)					NOT NULL,
     heatRating 		VARCHAR(11) 				DEFAULT '0',
     PRIMARY KEY 	(TacoFixinId)
 );
