@@ -1,3 +1,5 @@
+var root_url = "http://localhost/TacoTruck/api/";
+
 // JavaScript Document
 $(document).ready(function() {
     var resolution = $(window).width();
@@ -11,6 +13,8 @@ $(document).ready(function() {
 
 });
 
+
+//Front-end validation
 function checkPassword(pform) {
 	var str = pform.pwd.value;
 	if(str.length < 8) {
@@ -32,4 +36,26 @@ function checkRegister(pform) {
 		pform.pwd.focus();
 		return false;
 	}
+}
+
+//Back-end validation
+function checkLogin(lForm) {
+
+	var email = lForm.email.value;
+	var pw = lForm.pwd.value;
+	var canLogin = false;
+
+	console.log('findAll');
+	$.ajax({
+		type: 'GET',
+		url: rootURL + email + '/' + pw,
+		dataType: "json", // data type of response
+		success: canLogin = true,
+		error: function() {
+			alert("Username or password was incorrect");
+			canLogin = false;
+		}
+	});
+
+	return canLogin;
 }

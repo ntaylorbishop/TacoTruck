@@ -13,34 +13,9 @@
     return $conn;
   }
 
-  function checkCredentials($user, $pw) {
-    dbconnect();
-
-    try {
-      $stmt = $conn->prepare('SELECT * FROM Users WHERE EmailAddress = :email AND SELECT * FROM Users WHERE Password = :pw');
-      $stmt->execute(array('email' => $user, 'pw' => $pw));
-
-      $result = $stmt->fetchAll();
-
-      if(count($result))
-        return true;
-      else
-        return false;
-
-    } catch(PDOException $e) {
-      echo 'ERROR: ' . $e->getMessage();
-    }
-  }
-
   function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
-    dbconnect();
+    verifyRegistered($email, $pw);
 
-    try {
-      $stmt = $conn->prepare('INSERT INTO Users VALUES (:fName, :lName, :email, :pw, :ccp, :ccnum');
-      $stmt->execute(array('fName' => $fName, 'lName' => $lName, 'email' => $email, 'pw' => $pw, 'ccp' => $ccp, 'ccnum' => $ccnum));
-      
-    } catch(PDOException $e) {
-      echo 'ERROR: ' . $e->getMessage();
-    }
+    
   }
   ?>

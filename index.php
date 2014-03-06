@@ -12,7 +12,6 @@
 <link href="css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
 <link href="css/styles_index.css" rel="stylesheet" />
 <script src="js/jQuery.js"></script>
-<script src="js/jquery-ui-1.10.4.custom.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/homePage.js"></script>
@@ -28,10 +27,10 @@
     <br/>
     <br/>
     <br/>
-    <form name="login" action="user.php" method="post" onSubmit="return checkPassword(this)">
+    <form name="login" action="user.php" method="post" onSubmit="return checkLogin(this)">
       <div>
         <label>Email:</label>
-        <input type="email" id="userN" name="userN"/>
+        <input type="email" id="email" name="email"/>
       </div>
       <div>
         <label>Password:</label>
