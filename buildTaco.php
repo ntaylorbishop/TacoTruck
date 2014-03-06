@@ -18,7 +18,7 @@
     <div class="divider"></div>
   </div>
 </div>
-<h1>Build your Taco Order</h1>
+<h1 id="title">Build your Taco Order</h1>
 <div id="content">
 <div id="ingredients">
   <form id="currentTaco">
