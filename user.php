@@ -13,11 +13,13 @@
 </head>
 
 <body>
-	<div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-    <div id="links"> <a href="/user.php">Home</a> | <a href="/account.php">Account</a> | <a href="/index.php">Log Off</a>
-    <div id="divider"></div>
+<div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
+  <div id="links"> <a href="#homepage">Home</a> &#x2022; <a href="#account">Account</a> &#x2022; <a href="#logoff">Log In</a></div>
+  <div class="divider"></div>
+</div>
   	</div>
-	<h1>Taco Truck</h1>
+	<h1 id="title">Taco Truck</h1>
+<div id="content">
 	<div id="lastOrder">
 		<h2>Your last order was:</h2>
 		<table>
@@ -44,9 +46,11 @@
 			<input type="submit" id="build" value="Build Your Own Taco"/>
 		</form>
 	</div>
-<footer>
+</div>
+<div class="divider2"></div>
+<div id="footer">
   <div>Taco Truck |<a href="#locations">123 Taco Avenue - Dallas - TX - 75205</a>| 214-MY-TACOS (214-698-2267) |<a href="#homepage">tacotruck.com</a>| Hours: 24/7</div>
-</footer>
+</div>
 </body>
 
 </html>

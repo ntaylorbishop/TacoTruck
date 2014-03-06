@@ -30,7 +30,7 @@
     <form name="login" action="user.php" method="post" onSubmit="return checkLogin(this)">
       <div>
         <label>Email:</label>
-        <input type="email" id="email" name="email"/>
+        <input type="text" id="email" name="email"/>
       </div>
       <div>
         <label>Password:</label>
@@ -38,16 +38,7 @@
       </div>
       <input type="submit" id="LogIn" name="LogIn" value="Log In"/>
     </form>
-    <?php
-  if(isset($_POST['LogIn'])) {
-    if(checkCredentials($_POST['userN'], $_POST['pwd'])) {
-      echo 'User logged in now';
-    }
-    else {
-      echo 'Email or password is incorrect';
-    }
-  } 
-?>
+    
     <form name="signup" action="account.php" method="post">
       <input type="submit" id="register" name="register" value="Sign Up"/>
     </form>

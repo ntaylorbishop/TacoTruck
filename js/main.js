@@ -40,24 +40,20 @@ function checkRegister(pform) {
 
 //Back-end validation
 function checkLogin(lForm) {
-
 	var email = lForm.email.value;
 	var pw = lForm.pwd.value;
 	var canLogin = false;
-
 	console.log('findAll');
-	$.ajax({
+	var check = $.ajax({
 		type: 'GET',
-		url: rootURL + email + '/' + pw,
+		url: root_url + 'verify/' + email + '/' + pw,
 		dataType: "json", // data type of response
 		async: false,
-		success: function() {
-alert("test")
-			alert(jqXHR.registered());
-			return false;
-		},
-		
 	});
-
-	return canLogin;
+	check = check.responseJSON;
+	check = check.registered;
+	if(check === false){
+		alert("Email and Password Do Not Match");
+	}
+	return check;
 }
