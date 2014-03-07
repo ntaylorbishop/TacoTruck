@@ -54,3 +54,7 @@ function checkLogin(lForm) {
 	}
 	return check;
 }
+
+function register(kform) {
+	
+}

@@ -30,6 +30,10 @@
       <input type="text" id="lName" name="lName" required/>
     </div>
     <div>
+      <label>Phone:</label>
+      <input type="text" id="phone" name="phone" required/>
+    </div>
+    <div>
       <label>Email:</label>
       <input type="email" id="email" name="email" required/>
     </div>
