@@ -85,3 +85,9 @@
 	padding: .5em .5em .5em 1em;
 	margin: 0 0 0 0;
 }
+
+table {
+	padding-left:5px;
+	width:250px;
+	color:black;
+}
