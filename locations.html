@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+      <title>Taco Truck -- Locations</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="css/styles.css" rel="stylesheet">
+<link href="css/styles_account.css" rel="stylesheet">
+<link href="css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<script src="js/jQuery.js"></script>
+<script src="js/jquery-ui-1.10.4.custom.js"></script>
+<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="js/main.js"></script>
+    
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
+      #map-canvas { float:right;width:700px;height:450px; }
     </style>
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAypW2NFeQ_dPFxtFjFeP78wsERro_xYQY&sensor=true">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAypW2NFeQ_dPFxtFjFeP78wsERro_xYQY&sensor=false">
     </script>
     <script type="text/javascript">
         
@@ -125,7 +135,18 @@
     </script>
   </head>
   <body>
+      <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
+  <div id="links"> <a href="/user.php">Home</a> &#x2022;  <a href="/account.php">Account</a> &#x2022; <a href="/index.php">Log Off</a>
+    <div class="divider"></div>
+      <div class="locationlinks">
+      <ul>
+          <li>Klyde Warren Park</li>
+          <li>Southern Methodist University</li>
+          <li>Addison Circle Park</li>
+          <li>Truck Yard</li>
+          <li>Deep Ellum</li>
+          </ul>
+      </div>
     <div id="map-canvas"/>
-
   </body>
 </html>
