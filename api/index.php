@@ -18,6 +18,7 @@ function getRecentOrder($email) {
   				SELECT max(Dates) MostRecentOrder
   				FROM Orders WHERE UserId=:UserId) t2
   				ON t1.Dates = t2.MostRecentOrder";
+	$sqlOrderItem = "SELECT OrderId, Quantity FROM OrderItem WHERE OrderId=:orderId";
 	try {
 		$db = dbconnect();
 		$stmtID = $db->prepare($sqlID);
@@ -29,10 +30,20 @@ function getRecentOrder($email) {
 		$stmtOrder = $db->prepare($sqlOrder);
 		$stmtOrder->bindParam("UserId", $userID);
 		$stmtOrder->execute();
-		$order = $stmtOrder->fetchObject();	
+		$order = $stmtOrder->fetch(PDO::FETCH_ASSOC);	
+		$orderDate = $order['Dates'];
+		$orderTotal = $order['Total'];
+		$orderId = $order['OrderId'];
+		
+		$stmtOrderItem = $db->prepare($sqlOrderItem);
+		$stmtOrderItem->bindParam("orderId", $orderId);
+		$stmtOrderItem->execute();
+		$orderItems = $stmtOrderItem->fetch(PDO::FETCH_ASSOC);
+		
+		
 		
 		$db = null;
-		echo '{"recent_order": ' . json_encode($order) . '}';
+		echo '{"recent_order":{"date_time":"' .$orderDate. '","total":"' .$orderTotal. '"'.json_encode($orderItems). '}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
