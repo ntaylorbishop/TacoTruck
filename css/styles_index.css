@@ -8,8 +8,9 @@
 	padding-right:18px;	
 	background-color:#F7A11A;
 	border: 1px solid black;
-	padding-top:60px;
-	padding-bottom:52px;
+	padding-top:56px;
+	padding-bottom:56px;
+	color:black;
 }
 
 #infoPane {
@@ -42,4 +43,8 @@ input {
 
 .divider2 {
 	margin-top: 265px;
+}
+
+p {
+	padding-left: 8px;
 }

@@ -18,15 +18,12 @@
 </head>
 <body>
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-  <div id="links"> <a href="locations.html">Locations</a></div> 
+  <div id="links"> <a href="locations.html">Locations</a></div>
   <div class="divider"></div>
 </div>
 <h1 id="title">Taco Truck</h1>
 <div id="content">
-  <div id="loginPane"> <br/>
-    <br/>
-    <br/>
-    <br/>
+  <div id="loginPane">
     <form name="login" action="user.php" method="post" onSubmit="return checkLogin(this)">
       <div>
         <label>Email:</label>
@@ -36,15 +33,16 @@
         <label>Password:</label>
         <input type="password" id="pwd" name="pwd" required/>
       </div>
+<div id="centerButton">
       <input type="submit" id="LogIn" name="LogIn" value="Log In"/>
     </form>
-    
     <form name="signup" action="account.php" method="post">
       <input type="submit" id="register" name="register" value="Sign Up"/>
     </form>
     <form name="guestorder" action="buildTaco.php" method="post">
       <input type="submit" id="guest" name="guest" value="Order as a Guest"/>
     </form>
+	</div>
   </div>
   <div id="infoPane">
     <p>Welcome to TacoTruck.com, where you can order delicious tacos online!</p>

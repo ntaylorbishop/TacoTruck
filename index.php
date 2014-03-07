@@ -18,7 +18,7 @@
 </head>
 <body>
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-  <div id="links"> <a href="locations.html">Locations</a></div> 
+  <div id="links"> <a href="locations.html">Locations</a></div>
   <div class="divider"></div>
 </div>
 <h1 id="title">Taco Truck</h1>
@@ -35,7 +35,6 @@
       </div>
       <input type="submit" id="LogIn" name="LogIn" value="Log In"/>
     </form>
-    
     <form name="signup" action="account.php" method="post">
       <input type="submit" id="register" name="register" value="Sign Up"/>
     </form>
