@@ -60,7 +60,7 @@ function getRecentOrder($email) {
 				$stmtTacoFixins->bindParam("fixinId", $fixinId);
 				$stmtTacoFixins->execute();
 				$fixinName = $stmtTacoFixins->fetch(PDO::FETCH_ASSOC);
-				$jsonTacos = $jsonTacos . '"{name":"' . $fixinName['name'] . '"';
+				$jsonTacos = $jsonTacos . '{"name":"' . $fixinName['name'] . '"';
 				if($stmtOrderItemDetails->rowCount() - $j == 1) 
 					$jsonTacos = $jsonTacos . '}';	
 				else 

@@ -75,7 +75,7 @@ function getRecentOrder($email) {
 		
 		
 		$db = null;
-		echo '{"recent_order": {"date_time":"' .$orderDate. '","total":"' .$orderTotal. '","tacos":[' . $jsonTacos . '}}';
+		echo '{"recent_order": {"date_time":"' .$orderDate. '","total":"' .$orderTotal. '","tacos":[' . $jsonTacos . ']}}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
