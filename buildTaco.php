@@ -16,7 +16,7 @@
 
 <body>
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-  <div id="links"> <a href="user.php">Home</a> &#x2022; <a href="locations.html">Locations</a> &#x2022; <a href="account.php">Account</a> &#x2022; <a href="index.php">Log Off</a>
+  <div id="links"> <a href="user.php">Home</a> &#x2022; <a href="locations.html">Locations</a> &#x2022; <a href="/account.php">Account</a> &#x2022; <a href="/index.php">Log Off</a>
     <div class="divider"></div>
   </div>
 </div>
@@ -43,10 +43,11 @@ Quantity:
   </form>
 </div>
   <div id="order">
-
+	<div id="checkOutBorder">
     <form id="currentOrder" action="payment.php" method="post">
       <input type="submit" value="Proceed to Check Out" />
     </form>
+</div>
   </div>
 </div>
 <div class="divider2"></div>

@@ -18,7 +18,7 @@
 }
 
 #order {
-	background-color:brown;
+	background-color:#F7A11A;
 	width:255px;
 	height:600px;
 	padding-left:5px;
@@ -26,6 +26,7 @@
 	float:left;
 	border:2px solid black;
 	border-radius:5px;
+	
 }
 
 #content {
@@ -48,6 +49,16 @@
 }
 
 #currentOrder {
-	margin-top:550px;
 	text-align:center;
+	padding-top:4px;
+}
+
+#checkOutBorder {
+	background-color:#fabf64;
+	border: 1px solid black;
+	border-radius:5px;
+	margin-left:24px;
+	margin-top:535px;
+	width:200px;
+	height:33px;
 }

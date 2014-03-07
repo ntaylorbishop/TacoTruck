@@ -49,6 +49,16 @@
 }
 
 #currentOrder {
-	margin-top:550px;
 	text-align:center;
+	padding-top:4px;
+}
+
+#checkOutBorder {
+	background-color:#fabf64;
+	border: 1px solid black;
+	border-radius:5px;
+	margin-left:23px;
+	margin-top:535px;
+	width:200px;
+	height:33px;
 }
