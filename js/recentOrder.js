@@ -1,4 +1,5 @@
 var root_url = "http://localhost/TacoTruck/api/";
+var build_url = "http://localhost/TacoTruck/buildTaco.php";
 
 $(document).ready(function() {
 	var check = $.ajax({
@@ -16,6 +17,7 @@ $(document).ready(function() {
 	check = check.tacos;
 
 	var numTacos = Object.keys(check).length;
+	if(numTacos > 0){
 	var tacoSpec;
 	var numIngredients;
 	var qty;
@@ -39,6 +41,9 @@ $(document).ready(function() {
 		$("#recentOrderDetails tr:last").after("</td></tr>");
 	}
 	$(".center").css('text-align', 'center');
+	} else {
+		window.location.href = build_url;
+	}
 
 });
 
