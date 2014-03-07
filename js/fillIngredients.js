@@ -28,7 +28,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"tortFill\"></div>");
 
 	for(var i = 0; i < 4; i++){
-		$("#tortFill").append("<input type=\"radio\" name=\"tortillas\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#tortFill").append("<input type=\"radio\" name=\"tortillas\" value=\"" + type2[i].name + "\" class=\"tortilla\"/>" + type2[i].name + "<br />" );
 	}
 	
 	var rice = $.ajax({
@@ -43,7 +43,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"riceFill\"></div>");
 
 	for(var i = 0; i < 2; i++){
-		$("#riceFill").append("<input type=\"radio\" name=\"rice\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#riceFill").append("<input type=\"radio\" name=\"rice\" value=\"" + type2[i].name + "\" class=\"rice\"/>" + type2[i].name + "<br />" );
 	}
 
 	var cheese = $.ajax({
@@ -58,7 +58,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"cheeseFill\"></div>");
 
 	for(var i = 0; i < 3; i++){
-		$("#cheeseFill").append("<input type=\"radio\" name=\"cheese\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#cheeseFill").append("<input type=\"radio\" name=\"cheese\" value=\"" + type2[i].name + "\" class=\"cheese\"/>" + type2[i].name + "<br />" );
 	}
 
 	var beans = $.ajax({
@@ -73,7 +73,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"beansFill\"></div>");
 
 	for(var i = 0; i < 3; i++){
-		$("#beansFill").append("<input type=\"radio\" name=\"beans\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#beansFill").append("<input type=\"radio\" name=\"beans\" value=\"" + type2[i].name + "\" class=\"beans\"/>" + type2[i].name + "<br />" );
 	}
 
 	var sauces = $.ajax({
@@ -113,7 +113,15 @@ $(document).ready(function() {
 	$("#accordion div").css('color', '#000');
 	
 	var ingredients = document.getElementsByTagName('input');
+	var fillings = document.getElementsByClassName('filling');
+	var tortillas = document.getElementsByClassName('tortilla');
+	var rice = document.getElementsByClassName('rice');
+	var cheese = document.getElementsByClassName('cheese');
+	var beans = document.getElementsByClassName('beans');
 
+	for(var i = 0; i < fillings.length; i++) {
+		//alert(fillings[i].value);
+	}
 	
 
 	for(var i = 0; i < ingredients.length-3; i++) {
@@ -121,12 +129,39 @@ $(document).ready(function() {
 	}
 
 	function selected(event) {
-		event.target.className = "selected";
+		var type = event.target.parentElement;
+		type = type.id;
+		if(type === 'typeFill'){
+			for(var i = 0; i < fillings.length; i++) {
+				fillings[i].className = "filling";
+			}
+		}
+		if(type === 'tortFill'){
+			for(var i = 0; i < tortillas.length; i++) {
+				tortillas[i].className = "tortilla";
+			}
+		}
+		if(type === 'riceFill'){
+			for(var i = 0; i < rice.length; i++) {
+				rice[i].className = "rice";
+			}
+		}
+		if(type === 'cheeseFill'){
+			for(var i = 0; i < cheese.length; i++) {
+				cheese[i].className = "cheese";
+			}
+		}
+		if(type === 'beansFill'){
+			for(var i = 0; i < beans.length; i++) {
+				beans[i].className = "beans";
+			}
+		}
+		event.target.className += " selected";
 	}
 
 	$("#add").click(function(event) {
-		for(var i = 0; i < ingredients.length-1; i++) {
-			if(ingredients[i].className === 'selected') {
+		for(var i = 0; i < ingredients.length; i++) {
+			if(ingredients[i].classList.contains('selected')) {
 				alert(ingredients[i].value);
 			}
 		}
