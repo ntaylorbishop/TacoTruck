@@ -11,7 +11,7 @@
 }
 
 #preview {
-	width:250px;
+	width:260px;
 	padding-left:5px;
 	padding-right:5px;
 	float:left;
@@ -19,17 +19,13 @@
 
 #order {
 	background-color:brown;
-	width:260px;
+	width:255px;
+	height:600px;
 	padding-left:5px;
 	padding-right:0px;
 	float:left;
-}
-
-#liveIng {
-	background-color:#A9A9A9;
-	border:5px black;
-	width:230px;
-	text-align:center;
+	border:2px solid black;
+	border-radius:5px;
 }
 
 #content {
@@ -37,12 +33,21 @@
 }
 
 .divider2 {
-	margin-top:618px;
+	margin-top:620px;
 }
 
 #selection {
-background-color:yellow;
 	float:left;
 	width:530px;
 	padding: 0 5px 0 0;
+}
+
+#qtyAdd {
+	margin-top:275px;
+	text-align:center;
+}
+
+#currentOrder {
+	margin-top:550px;
+	text-align:center;
 }

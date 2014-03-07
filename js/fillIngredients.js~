@@ -1,20 +1,21 @@
 var root_url = "http://localhost/TacoTruck/api/menu/";
 
 $(document).ready(function() {
+	var count = 0;
 	var type = $.ajax({
 		type: 'GET',
 		url: root_url + "type",
 		dataType: "json",
 		async: false,
 	});
-	alert(JSON.stringify(type));
 	var type2 = type.responseJSON;
 	var type3 = $("#accordion");
 	type3.append("<h3 id=\"type\">Filling</h3>");
 	type3.append("<div id=\"typeFill\"></div>");
 
 	for(var i = 0; i < 4; i++){
-		$("#typeFill").append("<input type=\"radio\" name=\"filling\" value=\"" + type2[i].name + "\" class=\"filling\"/>" + type2[i].name + "<br />" );
+		$("#typeFill").append("<input type=\"radio\" id=\"" + count + "\" name=\"filling\" value=\"" + type2[i].name + "\" class=\"filling\"/>" + type2[i].name + "<br />" );
+		count++;
 	}
 	
 	var tortillas = $.ajax({
@@ -29,7 +30,8 @@ $(document).ready(function() {
 	type3.append("<div id=\"tortFill\"></div>");
 
 	for(var i = 0; i < 4; i++){
-		$("#tortFill").append("<input type=\"radio\" name=\"tortillas\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#tortFill").append("<input type=\"radio\" id=\"" + count + "\" name=\"tortillas\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		count++;
 	}
 	
 	var rice = $.ajax({
@@ -44,7 +46,8 @@ $(document).ready(function() {
 	type3.append("<div id=\"riceFill\"></div>");
 
 	for(var i = 0; i < 2; i++){
-		$("#riceFill").append("<input type=\"radio\" name=\"rice\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#riceFill").append("<input type=\"radio\" id=\"" + count + "\" name=\"rice\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		count++;
 	}
 
 	var cheese = $.ajax({
@@ -59,7 +62,8 @@ $(document).ready(function() {
 	type3.append("<div id=\"cheeseFill\"></div>");
 
 	for(var i = 0; i < 3; i++){
-		$("#cheeseFill").append("<input type=\"radio\" name=\"cheese\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#cheeseFill").append("<input type=\"radio\" id=\"" + count + "\" name=\"cheese\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		count++;
 	}
 
 	var beans = $.ajax({
@@ -74,7 +78,8 @@ $(document).ready(function() {
 	type3.append("<div id=\"beansFill\"></div>");
 
 	for(var i = 0; i < 3; i++){
-		$("#beansFill").append("<input type=\"radio\" name=\"beans\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#beansFill").append("<input type=\"radio\" id=\"" + count + "\" name=\"beans\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		count++;
 	}
 
 	var sauces = $.ajax({
@@ -89,7 +94,8 @@ $(document).ready(function() {
 	type3.append("<div id=\"saucesFill\"></div>");
 
 	for(var i = 0; i < 12; i++){
-		$("#saucesFill").append("<input type=\"checkbox\" name=\"sauces\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#saucesFill").append("<input type=\"checkbox\" id=\"" + count + "\" name=\"sauces\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		count++;
 	}
 
 	var vegetables = $.ajax({
@@ -104,7 +110,8 @@ $(document).ready(function() {
 	type3.append("<div id=\"vegFill\"></div>");
 
 	for(var i = 0; i < 2; i++){
-		$("#vegFill").append("<input type=\"checkbox\" name=\"veggies\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#vegFill").append("<input type=\"checkbox\" id=\"" + count + "\" name=\"veggies\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		count++;
 	}
 
 	$("#accordion").accordion({
@@ -112,5 +119,7 @@ $(document).ready(function() {
 	});
 
 	$("#accordion div").css('color', '#000');
+	
+	$("#1").css('color', 'white');
 
 });
