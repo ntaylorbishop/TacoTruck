@@ -13,7 +13,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"typeFill\"></div>");
 
 	for(var i = 0; i < 4; i++){
-		$("#typeFill").append("<input type=\"radio\" name=\"filling\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#typeFill").append("<input type=\"radio\" name=\"filling\" value=\"" + type2[i].name + "\" class=\"filling\"/>" + type2[i].name + "<br />" );
 	}
 	
 	var tortillas = $.ajax({
@@ -109,5 +109,7 @@ var type2 = vegetables.responseJSON;
 	$("#accordion").accordion({
 		event: "click hoverintent"
 	});
+
+	$("#accordion div").css('color', 'white');
 
 });

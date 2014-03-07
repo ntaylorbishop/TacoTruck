@@ -21,22 +21,28 @@
 </div>
 <h1 id="title">Build your Taco Order</h1>
 <div id="content">
-<div id="ingredients">
   <form id="currentTaco">
-    <div id="accordion">
+    <div id="ingredients">
+      <div id="accordion"> </div>
     </div>
-    <input type="number" name="quantity" min="1" />
-    Quantity:
-    <input type="range" name="Quantity" min="1" max="5" />
-    <input type="submit" value="Add to Order" />
+    <div id="preview">
+      <div id="liveIng"> 
+      </div>
+Quantity:
+        <select name="qty">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input type="submit" value="Add to Order" />
+    </div>
   </form>
-  </div>
-  <div id="preview">
-  </div>
   <div id="order">
-  <form id="currentOrder" action="payment.php" method="post">
-    <input type="submit" value="Proceed to Check Out" />
-  </form>
+    <form id="currentOrder" action="payment.php" method="post">
+      <input type="submit" value="Proceed to Check Out" />
+    </form>
   </div>
 </div>
 <div class="divider2"></div>

@@ -186,7 +186,7 @@
 .ui-accordion .ui-accordion-content {
 	background-color:#A9A9A9;
 	padding: 1em 2.2em;
-	border-top: 5px black;
+	border: 5px black;
 	overflow: auto;
 }
 .ui-autocomplete {
