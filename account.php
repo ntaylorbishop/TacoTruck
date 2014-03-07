@@ -18,7 +18,7 @@
     <div class="divider"></div>
   </div>
 </div>
-<h1 id="title">Create an Account</h1>
+<h1 id="title">My Account</h1>
 <div id="content">
   <form name="payment" action="user.html" method="post" onsubmit="checkRegister(this)">
     <div>
