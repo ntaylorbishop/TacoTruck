@@ -35,7 +35,7 @@ function checkRegister(pform) {
 		pform.pwd.focus();
 		return false;
 	}
-	register(pform);
+	return register(pform);
 }
 
 function checkLogin(lForm) {
@@ -62,13 +62,13 @@ function register(rform) {
 		url: 'http://localhost/TacoTruck/api/register',
 		dataType: "json",
 		data: regFormToJSON(),
-		success: function(data, textStatus, jqXHR){
+		async: false,
+		success: function(){
 			alert('User created successfully');
+			return true;
 		},
-		error: function(jqXHR, textStatus, errorThrown){
-			alert('addUser error ya bish: ' + textStatus);
-		}
 	});
+	return false;
 }
 
 // Helper function to serialize all the form fields into a JSON string
