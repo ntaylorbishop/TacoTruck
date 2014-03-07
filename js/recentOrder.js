@@ -3,7 +3,7 @@ var root_url = "http://localhost/TacoTruck/api/";
 $(document).ready(function() {
 	var check = $.ajax({
 		type: 'GET',
-		url: root_url + 'recent_order/BobbyDDickerson@armyspy.com',
+		url: root_url + 'recent_order/' + $.cookie('user'),
 		dataType: "json", // data type of response
 		async: false,
 	});

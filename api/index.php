@@ -98,7 +98,6 @@ function getLocations() {
 
 function verifyRegistered($email, $password) {
 	$sql = "SELECT * FROM Users WHERE EmailAddress=:email";
-	
 	try {
 		$db = dbconnect();
 		$stmt = $db->prepare($sql);  
@@ -106,7 +105,7 @@ function verifyRegistered($email, $password) {
 		$stmt->execute();
 		if($stmt->rowCount() == 1) {
 			$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
-			if(password_verify($password, $userInfo['password']))
+			if(password_verify($password, $userInfo['Password']))
 				echo '{"registered": true}';
 			else echo '{"registered": false}';	
 		}
