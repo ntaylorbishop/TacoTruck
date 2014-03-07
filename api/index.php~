@@ -154,32 +154,24 @@ function registerUser() {
 	$request = Slim::getInstance()->request();
 	$user = json_decode($request->getBody());
 
-	//$sqlCheck = "SELECT * FROM Users WHERE EmailAddress=:email";
-		$sql = "INSERT INTO Users VALUES (DEFAULT, :fName, :lName, :email, :pw, :tele, :ccp, :ccnum)";
-		try {
-			$db = dbconnect();
-			/*$stmt = $db->prepare($sql);  
-			$stmt->bindParam("email", $email);
-			$stmt->execute();  
-			if($stmt->rowCount() > 0)
-				return true;  
-			else 
-				return false;*/
-			$stmt = $db->prepare($sql);   
-			$stmt->bindParam("fName", $user->fName);
-			$stmt->bindParam("lName", $user->lName);
-			$stmt->bindParam("email", $user->email);
-			$stmt->bindParam("pw", $user->pw);
-			$stmt->bindParam("tele", $user->tele);
-			$stmt->bindParam("ccp", $user->ccp);
-			$stmt->bindParam("ccnum", $user->ccnum);
-	        	$stmt->execute();
-	      		$db = null; 
-			echo json_encode($user); 
-		} catch(PDOException $e) {
-			error_log($e->getMessage(), 3, '/var/tmp/php.log');
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-		}
+	$sql = "INSERT INTO Users VALUES (DEFAULT, :fName, :lName, :email, :pw, :tele, :ccp, :ccnum)";
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);   
+		$stmt->bindParam("fName", $user->fName);
+		$stmt->bindParam("lName", $user->lName);
+		$stmt->bindParam("email", $user->email);
+		$stmt->bindParam("pw", $user->pw);
+		$stmt->bindParam("tele", $user->tele);
+		$stmt->bindParam("ccp", $user->ccp);
+		$stmt->bindParam("ccnum", $user->ccnum);
+	       	$stmt->execute();
+		$db = null; 
+		echo json_encode($user); 
+	} catch(PDOException $e) {
+		error_log($e->getMessage(), 3, '/var/tmp/php.log');
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
 	
 }
 ?>

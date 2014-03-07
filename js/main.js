@@ -44,12 +44,12 @@ function checkRegister(pform) {
 	});
 	check = check.responseJSON;
 	check = check.email_registered;
-	if(check === true){
+	if(check === false){
 		alert("Email is already registered");
 	}
 	else
 		register(pform);
-	return !check;
+	return check;
 }
 
 function checkLogin(lForm) {
@@ -72,7 +72,7 @@ function checkLogin(lForm) {
 function register(rform) {
 	$.ajax({
 		type: 'POST',
-		url: root_url + 'register/',
+		url: root_url + 'register',
 		data: regFormToJSON(),
 		async: false,
 		success: function(){
