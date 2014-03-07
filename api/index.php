@@ -60,7 +60,7 @@ function getRecentOrder($email) {
 				$stmtTacoFixins->bindParam("fixinId", $fixinId);
 				$stmtTacoFixins->execute();
 				$fixinName = $stmtTacoFixins->fetch(PDO::FETCH_ASSOC);
-				$jsonTacos = $jsonTacos . '"{name":"' . $fixinName['name'] . '"';
+				$jsonTacos = $jsonTacos . '{"name":"' . $fixinName['name'] . '"';
 				if($stmtOrderItemDetails->rowCount() - $j == 1) 
 					$jsonTacos = $jsonTacos . '}';	
 				else 
@@ -105,10 +105,10 @@ function verifyRegistered($email, $password) {
 		$stmt->execute();
 		$db = null;
 		if($stmt->rowCount() == 1) {
-			echo '{"registered": "true"}'; 
+			echo '{"registered": true}'; 
 			
 		}
-		else echo '{"registered": "false"}';
+		else echo '{"registered": false}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
@@ -128,7 +128,7 @@ function getMenuItems($itemType) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
-
+/*
 function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
 	$sql = "SELECT * FROM Users WHERE EmailAddress=:emailAddr";
 
@@ -149,5 +149,5 @@ function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
-}
+}*/
 ?>
