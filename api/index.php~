@@ -9,6 +9,7 @@ $app->get('/recent_order/:email', 'getRecentOrder');
 $app->get('/locations',	'getLocations');
 $app->get('/verify/:email/:pass', 'verifyRegistered');
 $app->get('/menu/:itemType', 'getMenuItems');
+$app->post('/register/:emailAddr', 'registerUser');
 
 $app->run();
 
@@ -46,7 +47,6 @@ function getRecentOrder($email) {
 		
 		for($i = 0; $i < $stmtOrderItem->rowCount(); $i++) {
 			$orderItem = $stmtOrderItem->fetch(PDO::FETCH_ASSOC);
-		//while($orderItem = $stmtOrderItem->fetch(PDO::FETCH_ASSOC)) {
 			$orderItemId = $orderItem['OrderItemId'];
 			$jsonTacos = $jsonTacos . '{"OrderItemId":"' . $orderItemId . '","Quantity":"' 
 					. $orderItem['Quantity'] . '","TacoFixins":[';
@@ -55,7 +55,6 @@ function getRecentOrder($email) {
 			$stmtOrderItemDetails->execute();
 			for($j = 0; $j < $stmtOrderItemDetails->rowCount(); $j++) {
 				$orderItemDetail = $stmtOrderItemDetails->fetch(PDO::FETCH_ASSOC);
-			//while($orderItemDetail = $stmtOrderItemDetails->fetch(PDO::FETCH_ASSOC)) {
 				$fixinId = $orderItemDetail['TacoFixinId'];
 				$stmtTacoFixins = $db->prepare($sqlTacoFixins);
 				$stmtTacoFixins->bindParam("fixinId", $fixinId);
@@ -105,8 +104,10 @@ function verifyRegistered($email, $password) {
 		$stmt->bindParam("pass", $password);
 		$stmt->execute();
 		$db = null;
-		if($stmt->rowCount() == 1)
+		if($stmt->rowCount() == 1) {
 			echo '{"registered": true}'; 
+			
+		}
 		else echo '{"registered": false}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
@@ -121,6 +122,28 @@ function getMenuItems($itemType) {
 		$stmt->bindParam("itemType", $itemType);
 		$stmt->execute();
 		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
+		$db = null;
+		echo json_encode($item); 
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
+function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
+	$sql = "SELECT * FROM Users WHERE EmailAddress=:emailAddr";
+
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);  
+		$stmt->bindParam("emailAddr", $email);
+		$stmt->execute();
+		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
+		if($stmt->rowCount() == 0) {
+			$sql = "INSERT INTO Users VALUES (" . $fName . ","  $lName . "," . $email "," . $pw . "," . $ccp . "," . $ccp . "," . $ccnum . ");";
+		}
+			echo '{"exists": false}'; 
+		else 
+			echo '{"exists": true}';
 		$db = null;
 		echo json_encode($item); 
 	} catch(PDOException $e) {
