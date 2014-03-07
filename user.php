@@ -22,16 +22,15 @@
 <div id="content">
   <div id="lastOrder">
     <h2>Your last order was:</h2>
-	<table id="recentOrder">
-	<tr>
-		<th>Date</th>
-		<th>Price</th>
-	</tr>
-	</table>
-    <table id="recentOrderDetails">
+    <table id="recentOrder">
       <tr>
         <th>Date</th>
         <th>Price</th>
+      </tr>
+    </table>
+    <table id="recentOrderDetails">
+      <tr>
+        <th>Qty</th>
         <th>Price</th>
       </tr>
     </table>
