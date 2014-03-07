@@ -15,7 +15,7 @@
 
 <body>
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-  <div id="links"> <a href="#homepage">Home</a> &#x2022; <a href="#account">Account</a> &#x2022; <a href="#logoff">Log In</a></div>
+  <div id="links"> <a href="#homepage">Home</a> &#x2022; <a href="locations.html">Locations</a> &#x2022; <a href="#account">Account</a> &#x2022; <a href="#logoff">Log Off</a></div>
   <div class="divider"></div>
 </div>
 </div>
