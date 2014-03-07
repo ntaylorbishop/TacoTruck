@@ -170,13 +170,21 @@ $(document).ready(function() {
 		$.cookie('orderitemnum', tempNum);
 		alert($.cookie('orderitemnum'));
 		var counter = 1;
+
+		$("#cart tr:last").after("<tr><td class=\"center\">" + quantity+ "</td><td>Taco" + $.cookie('orderitemnum'));
+
 		for(var i = 0; i < ingredients.length; i++) {
 			if(ingredients[i].classList.contains('selected')) {
 				orderItemDetails[counter] = ingredients[i].value
 				counter++;
-				alert(ingredients[i].value);
+				//alert(ingredients[i].value);
+				$("#cart td:last").after(ingredients[i].value+" ");
 			}
 		}
+
+		$("#cart tr:last").after("</td></tr>");
+		
+
 		numString = $.cookie('orderitemnum');
 		$.cookie('OrderItem' + numString, orderItemDetails);
 		for(var i = 1; i <= $.cookie('orderitemnum'); i++) {
@@ -184,7 +192,6 @@ $(document).ready(function() {
 			alert($.cookie('OrderItem' + i));
 		}
 	});
-
 });
 
 function makeTaco() {

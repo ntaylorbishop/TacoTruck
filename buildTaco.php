@@ -31,21 +31,28 @@
     <div id="preview">
 <div id="qtyAdd">
 Quantity:
-        <select name="qty">
+        <select id="quan" name="qty">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <input id="add" type="submit" value="Add to Order" />
+        <input id="add" type="button" value="Add to Order" />
 </div>
     </div>
   </form>
 </div>
   <div id="order">
 	<h3 id="cartTitle">Cart</h3>
-	<div id="cartDisplay"></div>
+	<div id="cartDisplay">
+<table id="cart">
+	<tr>
+		<th>Qty</th>
+		<th>Details</th>
+	</tr>
+</table>
+</div>
 	<div id="checkOutBorder">
 	
     <form id="currentOrder" action="payment.php" method="post">

@@ -59,14 +59,14 @@
 	border: 1px solid black;
 	border-radius:5px;
 	margin-left:23px;
-	margin-top:529px;
+	margin-top:490px;
 	width:200px;
 	height:33px;
 }
 
 #cartDisplay {
 	background-color:#fabf64;
-	margin-top:40px;
+	margin-top:0px;
 	margin-left:-6px;
 	width:260px;
 	height:450px;
@@ -80,7 +80,6 @@
 }
 
 #cartTitle {
-	position:fixed;
 	display:block;
 	color:black;
 	padding: .5em .5em .5em 1em;

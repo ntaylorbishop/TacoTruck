@@ -11,7 +11,8 @@ $(document).ready(function() {
 	var type3 = $("#accordion");
 	type3.append("<h3 id=\"type\">Filling</h3>");
 	type3.append("<div id=\"typeFill\"></div>");
-
+	var orderitemnum = 0;
+	$.cookie('orderitemnum', orderitemnum);
 	for(var i = 0; i < 4; i++){
 		$("#typeFill").append("<input type=\"radio\" name=\"filling\" value=\"" + type2[i].name + "\" class=\"filling\"/>" + type2[i].name + "<br />" );
 	}
@@ -137,36 +138,60 @@ $(document).ready(function() {
 			}
 		}
 		if(type === 'tortFill'){
-			for(var i = 0; i < fillings.length; i++) {
-				fillings[i].className = "tortilla";
+			for(var i = 0; i < tortillas.length; i++) {
+				tortillas[i].className = "tortilla";
 			}
 		}
 		if(type === 'riceFill'){
-			for(var i = 0; i < fillings.length; i++) {
-				fillings[i].className = "rice";
+			for(var i = 0; i < rice.length; i++) {
+				rice[i].className = "rice";
 			}
 		}
 		if(type === 'cheeseFill'){
-			for(var i = 0; i < fillings.length; i++) {
-				fillings[i].className = "cheese";
+			for(var i = 0; i < cheese.length; i++) {
+				cheese[i].className = "cheese";
 			}
 		}
 		if(type === 'beansFill'){
-			for(var i = 0; i < fillings.length; i++) {
-				fillings[i].className = "beans";
+			for(var i = 0; i < beans.length; i++) {
+				beans[i].className = "beans";
 			}
 		}
 		event.target.className += " selected";
 	}
 
 	$("#add").click(function(event) {
+		var orderItemDetails = new Array();
+		var quantity = document.getElementById("quan");
+		quantity = quantity.options[quantity.selectedIndex].value;
+		orderItemDetails[0] = quantity;
+		tempNum = $.cookie('orderitemnum');
+		tempNum++;
+		$.cookie('orderitemnum', tempNum);
+		alert($.cookie('orderitemnum'));
+		var counter = 1;
+
+		$("#cart tr:last").after("<tr><td class=\"center\">" + quantity+ "</td><td>Taco" + $.cookie('orderitemnum'));
+
 		for(var i = 0; i < ingredients.length; i++) {
 			if(ingredients[i].classList.contains('selected')) {
-				alert(ingredients[i].value);
+				orderItemDetails[counter] = ingredients[i].value
+				counter++;
+				//alert(ingredients[i].value);
+				$("#cart td:last").after(ingredients[i].value+" ");
 			}
 		}
-	});
 
+		$("#cart").after("</td></tr>");
+		
+
+		numString = $.cookie('orderitemnum');
+		$.cookie('OrderItem' + numString, orderItemDetails);
+		for(var i = 1; i <= $.cookie('orderitemnum'); i++) {
+			
+			alert($.cookie('OrderItem' + i));
+		}
+	});
 });
 
 function makeTaco() {
