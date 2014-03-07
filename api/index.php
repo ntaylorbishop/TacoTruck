@@ -166,10 +166,9 @@ function registerUser() {
 			$stmt->bindParam("tele", $user->tele);
 			$stmt->bindParam("ccp", $user->ccp);
 			$stmt->bindParam("ccnum", $user->ccnum);
-	        $stmt->execute();
-	      	//$db->lastInsertId();
-			$db = null; 
-			//echo json_encode($user); 
+	        	$stmt->execute();
+	      		$db = null; 
+			echo json_encode($user); 
 		} catch(PDOException $e) {
 			error_log($e->getMessage(), 3, '/var/tmp/php.log');
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 

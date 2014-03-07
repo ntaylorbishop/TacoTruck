@@ -35,7 +35,7 @@ function checkRegister(pform) {
 		pform.pwd.focus();
 		return false;
 	}
-	return register(pform);
+	/*return*/ register(pform);
 }
 
 function checkLogin(lForm) {
@@ -58,19 +58,16 @@ function checkLogin(lForm) {
 function register(rform) {
 	$.ajax({
 		type: 'POST',
-		contentType: 'application/json',
-		url: root_url + 'register',
-		dataType: "json",
-		async: false,
+		url: 'http://localhost/TacoTruck/api/register',
 		data: regFormToJSON(),
-		success: function(data, textStatus, jqXHR){
+		async: false,
+		success: function(){
 			alert('User created successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-			alert('addUser error ya bish: ' + textStatus);
+			alert('register() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
 		}
 	});
-	return false;
 }
 
 // Helper function to serialize all the form fields into a JSON string

@@ -153,7 +153,6 @@ function registerUser() {
 	error_log('addUser\n', 3, '/var/tmp/php.log');
 	$request = Slim::getInstance()->request();
 	$user = json_decode($request->getBody());
-	alert(user);
 
 	//if(!checkIfRegistered($user->email) {
 		$sql = "INSERT INTO Users VALUES (DEFAULT, :fName, :lName, :email, :pw, :tele, :ccp, :ccnum)";
