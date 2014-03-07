@@ -35,9 +35,9 @@ function checkRegister(pform) {
 		pform.pwd.focus();
 		return false;
 	}
+	return register(pform);
 }
 
-//Back-end validation
 function checkLogin(lForm) {
 	var email = lForm.email.value;
 	var pw = lForm.pwd.value;
@@ -53,4 +53,35 @@ function checkLogin(lForm) {
 		alert("Email and Password Do Not Match");
 	}
 	return check;
+}
+
+function register(rform) {
+	$.ajax({
+		type: 'POST',
+		contentType: 'application/json',
+		url: root_url + 'register',
+		dataType: "json",
+		async: false,
+		data: regFormToJSON(),
+		success: function(data, textStatus, jqXHR){
+			alert('User created successfully');
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('addUser error ya bish: ' + textStatus);
+		}
+	});
+	return false;
+}
+
+// Helper function to serialize all the form fields into a JSON string
+function regFormToJSON() {
+	return JSON.stringify({
+		"fName": $('#fName').val(), 
+		"lName": $('#lName').val(),
+		"tele": $('#phone').val(),
+		"email": $('#email').val(),
+		"pw": $('#pwd').val(),
+		"ccp": $('#ccType').val(),
+		"ccnum": $('#ccNum').val()
+	});
 }

@@ -23,10 +23,7 @@
 </div>
 <h1 id="title">Taco Truck</h1>
 <div id="content">
-  <div id="loginPane"> <br/>
-    <br/>
-    <br/>
-    <br/>
+  <div id="loginPane">
     <form name="login" action="user.php" method="post" onSubmit="return checkLogin(this)">
       <div>
         <label>Email:</label>

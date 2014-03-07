@@ -138,36 +138,43 @@ function checkIfRegistered($email) {
 		$stmt = $db->prepare($sql);  
 		$stmt->bindParam("email", $email);
 		$stmt->execute();  
-		if($stmt->rowCount() == 1)
-			echo 'true';   
+		if($stmt->rowCount() > 0)
+			return true;  
 		else 
-			echo 'false';
+			return false;
+		$db = null;
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
 
 function registerUser() {
+	echo 'sup';
+	error_log('addUser\n', 3, '/var/tmp/php.log');
 	$request = Slim::getInstance()->request();
 	$user = json_decode($request->getBody());
+	alert(user);
 
-	$sql = "INSERT INTO Users VALUES (:fName, :lName, :email, :pw, tele, :ccp, :ccnum)";
-	try {
-		$db = dbconnect();
-		$stmt = $db->prepare($sql);   
-		$stmt->bindParam("fName", $user->fName);
-		$stmt->bindParam("lName", $user->lName);
-		$stmt->bindParam("email", $user->email);
-		$stmt->bindParam("pw", $user->pw);
-		$stmt->bindParam("tele", $user->tele);
-		$stmt->bindParam("ccp", $user->ccp);
-		$stmt->bindParam("ccnum", $user->ccnum);
-        $stmt->execute();
-        $user->id = $db->lastInsertId();
-		$db = null; 
-		echo json_encode($user); 
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-	}
+	//if(!checkIfRegistered($user->email) {
+		$sql = "INSERT INTO Users VALUES (DEFAULT, :fName, :lName, :email, :pw, :tele, :ccp, :ccnum)";
+		try {
+			$db = dbconnect();
+			$stmt = $db->prepare($sql);   
+			$stmt->bindParam("fName", $user->fName);
+			$stmt->bindParam("lName", $user->lName);
+			$stmt->bindParam("email", $user->email);
+			$stmt->bindParam("pw", $user->pw);
+			$stmt->bindParam("tele", $user->tele);
+			$stmt->bindParam("ccp", $user->ccp);
+			$stmt->bindParam("ccnum", $user->ccnum);
+	        $stmt->execute();
+	      	//$db->lastInsertId();
+			$db = null; 
+			echo json_encode($user); 
+		} catch(PDOException $e) {
+			error_log($e->getMessage(), 3, '/var/tmp/php.log');
+			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		}
+	//}
 }
 ?>

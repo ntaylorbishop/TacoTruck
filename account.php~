@@ -9,7 +9,6 @@
 <link href="css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
 <script src="js/jQuery.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
-<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="js/main.js"></script>
 </head>
 <body>
@@ -20,7 +19,7 @@
 </div>
 <h1 id="title">My Account</h1>
 <div id="content">
-  <form name="payment" action="user.html" method="post" onsubmit="checkRegister(this)">
+  <form name="payment" action="" method="post" onsubmit="return checkRegister(this)">
     <div>
       <label>First Name:</label>
       <input type="text" id="fName" name="fName" required/>
@@ -28,6 +27,10 @@
     <div>
       <label>Last Name:</label>
       <input type="text" id="lName" name="lName" required/>
+    </div>
+    <div>
+      <label>Phone:</label>
+      <input type="text" id="phone" name="phone" required/>
     </div>
     <div>
       <label>Email:</label>
