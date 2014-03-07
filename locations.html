@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 50% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAypW2NFeQ_dPFxtFjFeP78wsERro_xYQY&sensor=true">
+    </script>
+    <script type="text/javascript">
+        
+      function initialize() {
+          
+          var center = new google.maps.LatLng(32.87000, -96.809292);
+          var loc1 = new google.maps.LatLng(32.789401, -96.801487);
+          var loc2 = new google.maps.LatLng(32.844852, -96.785935);
+          var loc3 = new google.maps.LatLng(32.961485 , -96.825685);
+          var loc4 = new google.maps.LatLng(32.814333, -96.771179);
+          var loc5 = new google.maps.LatLng(32.782581, -96.784839);
+          
+          var loc1Info = '<p><b>TacoTruck @ Klyde Warren Park</b><br/>2012 Woodall Rodgers Fwy<br/>Dallas, TX, 75201</p>';
+          var loc2Info = '<p><b>TacoTruck @ Southern Methodist University</b><br/>6425 Boaz Lane <br/>Dallas, TX, 75205</p>';
+          var loc3Info = '<p><b>TacoTruck @ Addison Circle Park</b><br/>Addison Circle<br/>Addison, TX, 75001</p>';
+          var loc4Info = '<p><b>TacoTruck @ Truck Yard</b><br/>5624 Sears St<br/>Dallas, TX, 75206</p>';
+          var loc5Info = '<p><b>TacoTruck @ Deep Ellum</b><br/>2630 Commerce St<br/>Dallas, TX, 75226</p>';
+          
+          
+          var mapOptions = {
+              center: center,
+              zoom: 12
+          };
+          
+          var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+          
+          
+          var marker1 = new google.maps.Marker({
+              position: loc1,
+              map: map,
+              icon: 'images/taco_truck_logo.png'
+          });
+          var infowindow1 = new google.maps.InfoWindow({
+              content: loc1Info
+          });
+          
+          
+          var marker2 = new google.maps.Marker({
+              position: loc2,
+              map: map,
+              icon: 'images/taco_truck_logo.png'
+          });
+          var infowindow2 = new google.maps.InfoWindow({
+              content: loc2Info
+          });
+          
+          
+          var marker3 = new google.maps.Marker({
+              position: loc3,
+              map: map,
+              icon: 'images/taco_truck_logo.png'
+          });
+          var infowindow3 = new google.maps.InfoWindow({
+              content: loc3Info
+          });
+          
+          
+          var marker4 = new google.maps.Marker({
+              position: loc4,
+              map: map,
+              icon: 'images/taco_truck_logo.png'
+          });
+          var infowindow4 = new google.maps.InfoWindow({
+              content: loc4Info
+          });
+          
+          
+          var marker5 = new google.maps.Marker({
+              position: loc5,
+              map: map,
+              icon: 'images/taco_truck_logo.png'
+          });
+          var infowindow5 = new google.maps.InfoWindow({
+              content: loc5Info
+          });
+          
+          
+          google.maps.event.addListener(marker1, 'mouseover', function() {
+              infowindow1.open(map,marker1);
+          });
+          google.maps.event.addListener(marker2, 'mouseover', function() {
+              infowindow2.open(map,marker2);
+          });
+          google.maps.event.addListener(marker3, 'mouseover', function() {
+              infowindow3.open(map,marker3);
+          });
+          google.maps.event.addListener(marker4, 'mouseover', function() {
+              infowindow4.open(map,marker4);
+          });
+          google.maps.event.addListener(marker5, 'mouseover', function() {
+              infowindow5.open(map,marker5);
+          });
+          
+          google.maps.event.addListener(marker1, 'mouseout', function() {
+              infowindow1.close();
+          })
+          google.maps.event.addListener(marker2, 'mouseout', function() {
+              infowindow2.close();
+          })
+          google.maps.event.addListener(marker3, 'mouseout', function() {
+              infowindow3.close();
+          })
+          google.maps.event.addListener(marker4, 'mouseout', function() {
+              infowindow4.close();
+          })
+          google.maps.event.addListener(marker5, 'mouseout', function() {
+              infowindow5.close();
+          })
+          
+          
+      }
+        google.maps.event.addDomListener(window, 'load', initialize);
+        
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"/>
+
+  </body>
+</html>
