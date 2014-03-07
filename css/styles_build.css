@@ -58,7 +58,26 @@
 	border: 1px solid black;
 	border-radius:5px;
 	margin-left:23px;
-	margin-top:535px;
+	margin-top:530px;
 	width:200px;
 	height:33px;
+}
+
+#cartDisplay {
+	background-color:#fabf64;
+	margin-top:40px;
+	margin-left:-7px;
+	width:260px;
+	height:450px;
+	padding: 0 0 0 0;
+	float:left;
+	border:2px solid black;
+}
+
+#cartTitle {
+	position:fixed;
+	display:block;
+	color:black;
+	padding: .5em .5em .5em 1em;
+	margin: 0 0 0 0;
 }

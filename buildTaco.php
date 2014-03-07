@@ -43,6 +43,8 @@ Quantity:
   </form>
 </div>
   <div id="order">
+	<h3 id="cartTitle">Cart</h3>
+	<div id="cartDisplay"></div>
 	<div id="checkOutBorder">
     <form id="currentOrder" action="payment.php" method="post">
       <input type="submit" value="Proceed to Check Out" />
