@@ -9,7 +9,7 @@ $app->get('/recent_order/:email', 'getRecentOrder');
 $app->get('/locations',	'getLocations');
 $app->get('/verify/:email/:pass', 'verifyRegistered');
 $app->get('/menu/:itemType', 'getMenuItems');
-$app->post('/register/:fName/:lName/:email/:pw/:tele/:ccp/:ccnum', 'registerUser');
+//$app->post('/register/:fName/:lName/:email/:pw/:tele/:ccp/:ccnum', 'registerUser');
 
 $app->run();
 
@@ -60,7 +60,7 @@ function getRecentOrder($email) {
 				$stmtTacoFixins->bindParam("fixinId", $fixinId);
 				$stmtTacoFixins->execute();
 				$fixinName = $stmtTacoFixins->fetch(PDO::FETCH_ASSOC);
-				$jsonTacos = $jsonTacos . '"{name":"' . $fixinName['name'] . '"';
+				$jsonTacos = $jsonTacos . '{"name":"' . $fixinName['name'] . '"';
 				if($stmtOrderItemDetails->rowCount() - $j == 1) 
 					$jsonTacos = $jsonTacos . '}';	
 				else 
@@ -75,7 +75,7 @@ function getRecentOrder($email) {
 		
 		
 		$db = null;
-		echo '{"recent_order": {"date_time":"' .$orderDate. '","total":"' .$orderTotal. '","tacos":[' . $jsonTacos . '}}';
+		echo '{"recent_order": {"date_time":"' .$orderDate. '","total":"' .$orderTotal. '","tacos":[' . $jsonTacos . ']}}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
@@ -131,7 +131,7 @@ function getMenuItems($itemType) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
-
+/*
 function registerUser($fName, $lName, $email, $pw, $tele, $ccp, $ccnum) {
 	echo 'boomboom';
 	$sql = "SELECT * FROM Users WHERE EmailAddress=:email";
@@ -161,5 +161,5 @@ function registerUser($fName, $lName, $email, $pw, $tele, $ccp, $ccnum) {
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
-}
+}*/
 ?>

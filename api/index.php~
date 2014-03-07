@@ -9,7 +9,7 @@ $app->get('/recent_order/:email', 'getRecentOrder');
 $app->get('/locations',	'getLocations');
 $app->get('/verify/:email/:pass', 'verifyRegistered');
 $app->get('/menu/:itemType', 'getMenuItems');
-$app->post('/register/:emailAddr', 'registerUser');
+//$app->post('/register/:fName/:lName/:email/:pw/:tele/:ccp/:ccnum', 'registerUser');
 
 $app->run();
 
@@ -62,7 +62,7 @@ function getRecentOrder($email) {
 				$fixinName = $stmtTacoFixins->fetch(PDO::FETCH_ASSOC);
 				$jsonTacos = $jsonTacos . '{"name":"' . $fixinName['name'] . '"';
 				if($stmtOrderItemDetails->rowCount() - $j == 1) 
-					$jsonTacos = $jsonTacos . '}';	
+					$jsonTacos = $jsonTacos . '}]';	
 				else 
 					$jsonTacos = $jsonTacos . '},';
 			}
@@ -118,7 +118,10 @@ function getMenuItems($itemType) {
 	$sql = "SELECT * FROM Menu WHERE itemType=:itemType";
 	try {
 		$db = dbconnect();
-		$stmt = $db->prepare($sql);  
+		$stmt = $db->prepare($sql);   
+                $stmt->bindParam("emailAddr", $email);
+                $stmt->execute();
+
 		$stmt->bindParam("itemType", $itemType);
 		$stmt->execute();
 		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
@@ -129,23 +132,32 @@ function getMenuItems($itemType) {
 	}
 }
 /*
-function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
-	$sql = "SELECT * FROM Users WHERE EmailAddress=:emailAddr";
-
+function registerUser($fName, $lName, $email, $pw, $tele, $ccp, $ccnum) {
+	echo 'boomboom';
+	$sql = "SELECT * FROM Users WHERE EmailAddress=:email";
+	echo 'boomboom';
 	try {
 		$db = dbconnect();
 		$stmt = $db->prepare($sql);  
-		$stmt->bindParam("emailAddr", $email);
-		$stmt->execute();
-		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
-		if($stmt->rowCount() == 0) {
-			$sql = "INSERT INTO Users VALUES (" . $fName . ","  $lName . "," . $email "," . $pw . "," . $ccp . "," . $ccp . "," . $ccnum . ");";
-			echo '{"exists": false}';
-		} 
-		else 
-			echo '{"exists": true}';
-		$db = null;
-		echo json_encode($item); 
+		$stmt->bindParam("email", $email);
+		$stmt->execute();  
+		if($stmt->rowCount() == 1)
+			echo 'true';   
+		else {
+			echo 'boomboom';
+			$sql = "INSERT INTO Users VALUES (':fName',':lName',':email',':pw','tele',':ccp', ':ccnum')";
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("fName", $fName);
+			$stmt->bindParam("lName", $lName);
+			$stmt->bindParam("email", $email);
+			$stmt->bindParam("pw", $pw);
+			$stmt->bindParam("tele", $tele);
+			$stmt->bindParam("ccp", $ccp);
+			$stmt->bindParam("ccnum", $ccnum);
+                        $stmt->execute();
+                        echo 'false';
+		}
+		$db = null; 
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
