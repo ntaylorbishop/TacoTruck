@@ -140,8 +140,8 @@ function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
 		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
 		if($stmt->rowCount() == 0) {
 			$sql = "INSERT INTO Users VALUES (" . $fName . ","  $lName . "," . $email "," . $pw . "," . $ccp . "," . $ccp . "," . $ccnum . ");";
-		}
-			echo '{"exists": false}'; 
+			echo '{"exists": false}';
+		} 
 		else 
 			echo '{"exists": true}';
 		$db = null;
