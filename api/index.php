@@ -60,7 +60,7 @@ function getRecentOrder($email) {
 				$stmtTacoFixins->bindParam("fixinId", $fixinId);
 				$stmtTacoFixins->execute();
 				$fixinName = $stmtTacoFixins->fetch(PDO::FETCH_ASSOC);
-				$jsonTacos = $jsonTacos . '"{name":"' . $fixinName['name'] . '"';
+				$jsonTacos = $jsonTacos . '{"name":"' . $fixinName['name'] . '"';
 				if($stmtOrderItemDetails->rowCount() - $j == 1) 
 					$jsonTacos = $jsonTacos . '}';	
 				else 
@@ -75,7 +75,7 @@ function getRecentOrder($email) {
 		
 		
 		$db = null;
-		echo '{"recent_order": {"date_time":"' .$orderDate. '","total":"' .$orderTotal. '","tacos":[' . $jsonTacos . '}}';
+		echo '{"recent_order": {"date_time":"' .$orderDate. '","total":"' .$orderTotal. '","tacos":[' . $jsonTacos . ']}}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
@@ -128,7 +128,7 @@ function getMenuItems($itemType) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
-
+/*
 function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
 	$sql = "SELECT * FROM Users WHERE EmailAddress=:emailAddr";
 
@@ -140,8 +140,8 @@ function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
 		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
 		if($stmt->rowCount() == 0) {
 			$sql = "INSERT INTO Users VALUES (" . $fName . ","  $lName . "," . $email "," . $pw . "," . $ccp . "," . $ccp . "," . $ccnum . ");";
-		}
-			echo '{"exists": false}'; 
+			echo '{"exists": false}';
+		} 
 		else 
 			echo '{"exists": true}';
 		$db = null;
@@ -149,5 +149,5 @@ function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
-}
+}*/
 ?>

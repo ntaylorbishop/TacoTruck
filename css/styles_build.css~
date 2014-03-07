@@ -4,14 +4,14 @@
 /* CSS Specific to Build Taco Page */
 
 #ingredients {
-	width:260px;
+	width:250px;
 	padding-left:0px;
 	padding-right:5px;
 	float:left;
 }
 
 #preview {
-	width:260px;
+	width:250px;
 	padding-left:5px;
 	padding-right:5px;
 	float:left;
@@ -37,5 +37,12 @@
 }
 
 .divider2 {
-	margin-top:61px;
+	margin-top:618px;
+}
+
+#selection {
+background-color:yellow;
+	float:left;
+	width:530px;
+	padding: 0 5px 0 0;
 }

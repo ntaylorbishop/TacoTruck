@@ -52,7 +52,7 @@ $(document).ready(function() {
 		dataType: "json",
 		async: false,
 	});
-var type2 = cheese.responseJSON;
+	var type2 = cheese.responseJSON;
 	var type3 = $("#accordion");
 	type3.append("<h3 id=\"cheese\">Cheese</h3>");
 	type3.append("<div id=\"cheeseFill\"></div>");
@@ -67,7 +67,7 @@ var type2 = cheese.responseJSON;
 		dataType: "json",
 		async: false,
 	});
-var type2 = beans.responseJSON;
+	var type2 = beans.responseJSON;
 	var type3 = $("#accordion");
 	type3.append("<h3 id=\"beans\">Beans</h3>");
 	type3.append("<div id=\"beansFill\"></div>");
@@ -82,7 +82,7 @@ var type2 = beans.responseJSON;
 		dataType: "json",
 		async: false,
 	});
-var type2 = sauces.responseJSON;
+	var type2 = sauces.responseJSON;
 	var type3 = $("#accordion");
 	type3.append("<h3 id=\"sauces\">Sauces</h3>");
 	type3.append("<div id=\"saucesFill\"></div>");
@@ -91,7 +91,7 @@ var type2 = sauces.responseJSON;
 		$("#saucesFill").append("<input type=\"checkbox\" name=\"sauces\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
 	}
 
-var vegetables = $.ajax({
+	var vegetables = $.ajax({
 		type: 'GET',
 		url: root_url + "vegetables",
 		dataType: "json",
@@ -110,6 +110,6 @@ var type2 = vegetables.responseJSON;
 		event: "click hoverintent"
 	});
 
-	$("#accordion div input").css('color', 'white');
+	$("#accordion div").css('color', '#000');
 
 });
