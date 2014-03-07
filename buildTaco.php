@@ -8,6 +8,7 @@
 <script src="js/jQuery.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <script src="js/main.js"></script>
 <script src="js/fillIngredients.js"></script>
 <script src="js/liveIngredients.js"></script>
@@ -23,7 +24,7 @@
 <h1 id="title">Build your Taco Order</h1>
 <div id="content">
 <div id="selection">
-  <form id="currentTaco">
+  <form id="currentTaco" action="">
     <div id="ingredients">
       <div id="accordion"> </div>
     </div>
@@ -37,7 +38,7 @@ Quantity:
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <input type="submit" value="Add to Order" />
+        <input id="add" type="submit" value="Add to Order" />
 </div>
     </div>
   </form>

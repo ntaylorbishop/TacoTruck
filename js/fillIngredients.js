@@ -111,5 +111,29 @@ $(document).ready(function() {
 	});
 
 	$("#accordion div").css('color', '#000');
+	
+	var ingredients = document.getElementsByTagName('input');
+
+	
+
+	for(var i = 0; i < ingredients.length-3; i++) {
+		ingredients[i].addEventListener('click', selected, false);
+	}
+
+	function selected(event) {
+		event.target.className = "selected";
+	}
+
+	$("#add").click(function(event) {
+		for(var i = 0; i < ingredients.length-1; i++) {
+			if(ingredients[i].className === 'selected') {
+				alert(ingredients[i].value);
+			}
+		}
+	});
 
 });
+
+function makeTaco() {
+	
+}
