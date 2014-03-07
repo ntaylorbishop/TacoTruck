@@ -59,15 +59,15 @@ function register(rform) {
 	$.ajax({
 		type: 'POST',
 		contentType: 'application/json',
-		url: root_url,
+		url: 'http://localhost/TacoTruck/api/register',
 		dataType: "json",
 		data: regFormToJSON(),
-		success: function(data, textStatus, jqXHR){
+		/*success: function(data, textStatus, jqXHR){
 			alert('User created successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert('addUser error ya bish: ' + textStatus);
-		}
+		}*/
 	});
 }
 
@@ -78,7 +78,7 @@ function regFormToJSON() {
 		"lName": $('#lName').val(),
 		"tele": $('#phone').val(),
 		"email": $('#email').val(),
-		"pw": $('#password').val(),
+		"pw": $('#pwd').val(),
 		"ccp": $('#ccType').val(),
 		"ccnum": $('#ccNum').val()
 	});

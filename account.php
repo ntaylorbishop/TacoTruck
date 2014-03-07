@@ -9,18 +9,17 @@
 <link href="css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
 <script src="js/jQuery.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
-<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="js/main.js"></script>
 </head>
 <body>
 <div id="topBar"> <img src="img/taco_truck_logo.png" id="logo">
-  <div id="links"> <a href="user.php">Home</a> &#x2022; <a href="locations.html">Locations</a> &#x2022; <a href="account.php">Account</a> &#x2022; <a href="index.php">Log Off</a>
+  <div id="links"> <a href="/user.php">Home</a> &#x2022; <a href="locations.html">Locations</a> &#x2022; <a href="/account.php">Account</a> &#x2022; <a href="/index.php">Log Off</a>
     <div class="divider"></div>
   </div>
 </div>
 <h1 id="title">My Account</h1>
 <div id="content">
-  <form name="payment" action="user.html" method="post" onsubmit="checkRegister(this)">
+  <form name="payment" action="user.php" method="post" onsubmit="checkRegister(this)">
     <div>
       <label>First Name:</label>
       <input type="text" id="fName" name="fName" required/>
