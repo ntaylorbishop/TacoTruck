@@ -32,7 +32,7 @@
       <div>
         <label>Password:</label>
         <input type="password" id="pwd" name="pwd" required/>
-      </div> <br/>
+      </div>
       <input type="submit" id="LogIn" name="LogIn" value="Log In"/>
     </form>
     <form name="signup" action="account.php" method="post">

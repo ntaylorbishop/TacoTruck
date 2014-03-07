@@ -19,6 +19,7 @@
 </div>
 <h1 id="title">My Account</h1>
 <div id="content">
+	<div id="registerForm">
   <form name="payment" action="user.php" method="post" onsubmit="return checkRegister(this)">
     <div>
       <label>First Name:</label>
@@ -56,6 +57,7 @@
       <label>Card Number:</label>
       <input type="text" id="ccNum" name="ccNum" required/>
     </div>
+</div>
     <input type="submit" id="register" name="register" value="Sign Up"/>
   </form>
 </div>
