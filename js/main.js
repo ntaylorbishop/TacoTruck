@@ -62,12 +62,12 @@ function register(rform) {
 		url: 'http://localhost/TacoTruck/api/register',
 		dataType: "json",
 		data: regFormToJSON(),
-		/*success: function(data, textStatus, jqXHR){
+		success: function(data, textStatus, jqXHR){
 			alert('User created successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert('addUser error ya bish: ' + textStatus);
-		}*/
+		}
 	});
 }
 

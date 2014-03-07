@@ -20,7 +20,7 @@
 <h1 id="title">My Account</h1>
 <div id="content">
   <form name="payment" action="user.php" method="post" onsubmit="checkRegister(this)">
-    <div>
+    <div>s
       <label>First Name:</label>
       <input type="text" id="fName" name="fName" required/>
     </div>
