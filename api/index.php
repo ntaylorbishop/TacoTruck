@@ -9,6 +9,7 @@ $app->get('/recent_order/:email', 'getRecentOrder');
 $app->get('/locations',	'getLocations');
 $app->get('/verify/:email/:pass', 'verifyRegistered');
 $app->get('/menu/:itemType', 'getMenuItems');
+$app->post('/register/:emailAddr', 'registerUser');
 
 $app->run();
 
@@ -119,6 +120,28 @@ function getMenuItems($itemType) {
 		$stmt->bindParam("itemType", $itemType);
 		$stmt->execute();
 		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
+		$db = null;
+		echo json_encode($item); 
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
+
+function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
+	$sql = "SELECT * FROM Users WHERE EmailAddress=:emailAddr";
+
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);  
+		$stmt->bindParam("emailAddr", $email);
+		$stmt->execute();
+		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
+		if($stmt->rowCount() == 0) {
+			$sql = "INSERT INTO Users VALUES (" . $fName . ","  $lName . "," . $email "," . $pw . "," . $ccp . "," . $ccp . "," . $ccnum . ");";
+		}
+			echo '{"exists": false}'; 
+		else 
+			echo '{"exists": true}';
 		$db = null;
 		echo json_encode($item); 
 	} catch(PDOException $e) {
