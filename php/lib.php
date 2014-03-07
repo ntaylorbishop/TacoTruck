@@ -13,9 +13,4 @@
     return $conn;
   }
 
-  function registerUser($fName, $lName, $email, $pw, $ccp, $ccnum) {
-    verifyRegistered($email, $pw);
-
-    
-  }
   ?>
