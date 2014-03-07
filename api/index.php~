@@ -9,7 +9,8 @@ $app->get('/recent_order/:email', 'getRecentOrder');
 $app->get('/locations',	'getLocations');
 $app->get('/verify/:email/:pass', 'verifyRegistered');
 $app->get('/menu/:itemType', 'getMenuItems');
-//$app->post('/register/:fName/:lName/:email/:pw/:tele/:ccp/:ccnum', 'registerUser');
+$app->get('/registered/:email', 'checkIfRegistered');
+$app->post('/register', 'registerUser');
 
 $app->run();
 
@@ -119,9 +120,6 @@ function getMenuItems($itemType) {
 	try {
 		$db = dbconnect();
 		$stmt = $db->prepare($sql);   
-                $stmt->bindParam("emailAddr", $email);
-                $stmt->execute();
-
 		$stmt->bindParam("itemType", $itemType);
 		$stmt->execute();
 		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
@@ -131,11 +129,10 @@ function getMenuItems($itemType) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
-/*
-function registerUser($fName, $lName, $email, $pw, $tele, $ccp, $ccnum) {
-	echo 'boomboom';
+
+function checkIfRegistered($email) {
 	$sql = "SELECT * FROM Users WHERE EmailAddress=:email";
-	echo 'boomboom';
+
 	try {
 		$db = dbconnect();
 		$stmt = $db->prepare($sql);  
@@ -143,23 +140,34 @@ function registerUser($fName, $lName, $email, $pw, $tele, $ccp, $ccnum) {
 		$stmt->execute();  
 		if($stmt->rowCount() == 1)
 			echo 'true';   
-		else {
-			echo 'boomboom';
-			$sql = "INSERT INTO Users VALUES (':fName',':lName',':email',':pw','tele',':ccp', ':ccnum')";
-			$stmt = $db->prepare($sql);
-			$stmt->bindParam("fName", $fName);
-			$stmt->bindParam("lName", $lName);
-			$stmt->bindParam("email", $email);
-			$stmt->bindParam("pw", $pw);
-			$stmt->bindParam("tele", $tele);
-			$stmt->bindParam("ccp", $ccp);
-			$stmt->bindParam("ccnum", $ccnum);
-                        $stmt->execute();
-                        echo 'false';
-		}
-		$db = null; 
+		else 
+			echo 'false';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
-}*/
+}
+
+function registerUser() {
+	$request = Slim::getInstance()->request();
+	$user = json_decode($request->getBody());
+
+	$sql = "INSERT INTO Users VALUES (:fName, :lName, :email, :pw, tele, :ccp, :ccnum)";
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);   
+		$stmt->bindParam("fName", $user->fName);
+		$stmt->bindParam("lName", $user->lName);
+		$stmt->bindParam("email", $user->email);
+		$stmt->bindParam("pw", $user->pw);
+		$stmt->bindParam("tele", $user->tele);
+		$stmt->bindParam("ccp", $user->ccp);
+		$stmt->bindParam("ccnum", $user->ccnum);
+        $stmt->execute();
+        $user->id = $db->lastInsertId();
+		$db = null; 
+		echo json_encode($user); 
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+	}
+}
 ?>

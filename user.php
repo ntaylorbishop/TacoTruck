@@ -31,8 +31,9 @@
     </table>
     <table id="recentOrderDetails">
       <tr>
-        <th>Qty</th>
-        <th>Price</th>
+        <th>Quantity</th>
+        <th></th>
+	<th>Details</th>
       </tr>
     </table>
   </div>

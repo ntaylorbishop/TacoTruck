@@ -1,3 +1,23 @@
 #recentOrder {
-	border: 5px solid white;
+	border: 1px solid black;
+	text-align:center;
+	align:center;
+	width:800px;
+	background-color:#F7A11A;
+	color: black;
+}
+
+#recentOrder td {
+	width:350px;
+}
+
+#recentOrderDetails {
+	border: 1px solid black;
+	width:800px;
+	background-color:#fabf64;
+	color: black;
+}
+
+#recentOrderDetails th {
+	text-align:center;
 }

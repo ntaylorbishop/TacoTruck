@@ -146,7 +146,7 @@ function checkIfRegistered($email) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
-
+/*
 function registerUser() {
 	$request = Slim::getInstance()->request();
 	$user = json_decode($request->getBody());
@@ -169,5 +169,5 @@ function registerUser() {
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
-}
+}*/
 ?>

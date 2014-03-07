@@ -27,23 +27,19 @@ $(document).ready(function() {
 		qty = check[i].Quantity;
 		tacoSpec = check[i].TacoFixins;
 		numIngredients = Object.keys(tacoSpec).length;
-		$("#recentOrderDetails tr:last").after("<tr><td>" + qty + "</td><td>");
+		$("#recentOrderDetails tr:last").after("<tr><td class=\"center\">" + qty + "</td><td>");
 
 		for(var j = 0; j<numIngredients; j++) {
-			if (j != numIngredients-1) {
-				$("#recentOrderDetails td:last").after(tacoSpec[j].name + ", ");
+			if (j == 0) {
+				$("#recentOrderDetails td:last").after(tacoSpec[j].name + "");
 			} else {
-				$("#recentOrderDetails td:last").after(tacoSpec[j].name);
+				$("#recentOrderDetails td:last").after(tacoSpec[j].name + ", ");
 			}
 		}
 		$("#recentOrderDetails tr:last").after("</td></tr>");
 	}
+	$(".center").css('text-align', 'center');
 
-	check = check.recent_order;
-	var price = check.Total;
-	var date = check.Dates;
-	var orderNo = check.OrderId;
-	$("#recentOrder").append("<tr><td>" + orderNo + "</td><td>" + date + "</td><td>" + price + "</td></tr>");
 });
 
 function count(obj) {
