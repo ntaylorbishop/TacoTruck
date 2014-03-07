@@ -65,7 +65,6 @@ function register(rform) {
 		async: false,
 		success: function(){
 			alert('User created successfully');
-			return true;
 		},
 		/*error: function(jqXHR, textStatus, errorThrown){
 			alert('register() error: ' + textStatus);
