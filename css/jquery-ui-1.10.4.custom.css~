@@ -161,6 +161,8 @@
 }
 .ui-accordion .ui-accordion-header {
 	background-color:#F7A11A;
+	font-weight:bolder;
+	border: 1px solid black;
 	display: block;
 	cursor: pointer;
 	position: relative;
@@ -184,9 +186,10 @@
 	margin-top: -8px;
 }
 .ui-accordion .ui-accordion-content {
-	background-color:#A9A9A9;
+	background-color:#fabf64;
+	border: 1px solid black;
 	padding: 1em 2.2em;
-	border: 5px black;
+	border-top: 5px black;
 	overflow: auto;
 }
 .ui-autocomplete {

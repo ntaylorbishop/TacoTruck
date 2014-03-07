@@ -21,12 +21,14 @@
 </div>
 <h1 id="title">Build your Taco Order</h1>
 <div id="content">
+<div id="selection">
   <form id="currentTaco">
     <div id="ingredients">
       <div id="accordion"> </div>
     </div>
     <div id="preview">
       <div id="liveIng"> 
+	<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
       </div>
 Quantity:
         <select name="qty">
@@ -39,7 +41,9 @@ Quantity:
         <input type="submit" value="Add to Order" />
     </div>
   </form>
+</div>
   <div id="order">
+<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
     <form id="currentOrder" action="payment.php" method="post">
       <input type="submit" value="Proceed to Check Out" />
     </form>
