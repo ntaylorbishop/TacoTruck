@@ -88,3 +88,7 @@ p {
 	top:75px;
 	width:800px;
 }
+
+#locationlinks {
+    align="left";
+}
