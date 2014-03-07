@@ -1,3 +1,8 @@
+<?php
+	$useremail = $_POST['email'];
+	setcookie("user", $useremail, time() + 3600);
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -44,7 +49,7 @@
   <form name="build" action="buildTaco.php" method="post">
     <input type="submit" id="build" value="Build Your Own Taco"/>
   </form>
-  </div<
+  </div>
 </div>
 <div class="divider2"></div>
 <div id="footer">

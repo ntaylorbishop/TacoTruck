@@ -1,7 +1,3 @@
-<?php
- setcookie("loggedIn", "true", time()+3600);
-?>
-
 <!DOCTYPE HTML>
 <!--This is our login page.  It provides users with options to log in (if they have an account), sign up for an account, or order as a guest ok-->
 <html>
@@ -13,6 +9,7 @@
 <link href="css/styles_index.css" rel="stylesheet" />
 <script src="js/jQuery.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <script src="js/main.js"></script>
 <script src="js/homePage.js"></script>
 </head>

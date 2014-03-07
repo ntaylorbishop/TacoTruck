@@ -1,3 +1,8 @@
+<?php
+	$useremail = $_POST['email'];
+	setcookie("user", $useremail, time() + 3600);
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -9,6 +14,7 @@
 <script src="js/jQuery.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <script src="js/main.js"></script>
 <script src="js/recentOrder.js"></script>
 </head>
