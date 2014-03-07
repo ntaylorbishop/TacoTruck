@@ -169,7 +169,7 @@ function registerUser() {
 	        $stmt->execute();
 	      	//$db->lastInsertId();
 			$db = null; 
-			echo json_encode($user); 
+			//echo json_encode($user); 
 		} catch(PDOException $e) {
 			error_log($e->getMessage(), 3, '/var/tmp/php.log');
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
