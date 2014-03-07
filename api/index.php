@@ -146,12 +146,13 @@ function checkIfRegistered($email) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
-/*
+
 function registerUser() {
+	echo 'sup';
 	$request = Slim::getInstance()->request();
 	$user = json_decode($request->getBody());
 
-	$sql = "INSERT INTO Users VALUES (:fName, :lName, :email, :pw, tele, :ccp, :ccnum)";
+	$sql = "INSERT INTO Users VALUES (DEFAULT, :fName, :lName, :email, :pw, tele, :ccp, :ccnum)";
 	try {
 		$db = dbconnect();
 		$stmt = $db->prepare($sql);   
@@ -163,11 +164,11 @@ function registerUser() {
 		$stmt->bindParam("ccp", $user->ccp);
 		$stmt->bindParam("ccnum", $user->ccnum);
         $stmt->execute();
-        $user->id = $db->lastInsertId();
+      	//$db->lastInsertId();
 		$db = null; 
 		echo json_encode($user); 
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
-}*/
+}
 ?>

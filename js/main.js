@@ -35,9 +35,9 @@ function checkRegister(pform) {
 		pform.pwd.focus();
 		return false;
 	}
+	register(pform);
 }
 
-//Back-end validation
 function checkLogin(lForm) {
 	var email = lForm.email.value;
 	var pw = lForm.pwd.value;
@@ -55,6 +55,31 @@ function checkLogin(lForm) {
 	return check;
 }
 
-function register(kform) {
-	
+function register(rform) {
+	$.ajax({
+		type: 'POST',
+		contentType: 'application/json',
+		url: root_url,
+		dataType: "json",
+		data: regFormToJSON(),
+		success: function(data, textStatus, jqXHR){
+			alert('User created successfully');
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('addUser error ya bish: ' + textStatus);
+		}
+	});
+}
+
+// Helper function to serialize all the form fields into a JSON string
+function regFormToJSON() {
+	return JSON.stringify({
+		"fName": $('#fName').val(), 
+		"lName": $('#lName').val(),
+		"tele": $('#phone').val(),
+		"email": $('#email').val(),
+		"pw": $('#password').val(),
+		"ccp": $('#ccType').val(),
+		"ccnum": $('#ccNum').val()
+	});
 }
