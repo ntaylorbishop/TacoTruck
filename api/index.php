@@ -139,9 +139,9 @@ function checkIfRegistered($email) {
 		$stmt->bindParam("email", $email);
 		$stmt->execute();  
 		if($stmt->rowCount() > 0)
-			echo '{"email_registered": false}';  
+			echo '{"email_registered": true}';  
 		else 
-			echo '{"email_registered": true}';
+			echo '{"email_registered": false}';
 		$db = null;
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 

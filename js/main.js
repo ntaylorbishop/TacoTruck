@@ -44,12 +44,12 @@ function checkRegister(pform) {
 	});
 	check = check.responseJSON;
 	check = check.email_registered;
-	if(check === false){
+	if(check === true){
 		alert("Email is already registered");
 	}
 	else
 		register(pform);
-	return check;
+	return !check;
 }
 
 function checkLogin(lForm) {

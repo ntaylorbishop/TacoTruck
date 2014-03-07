@@ -72,7 +72,7 @@ function checkLogin(lForm) {
 function register(rform) {
 	$.ajax({
 		type: 'POST',
-		url: 'http://localhost/TacoTruck/api/register',
+		url: root_url + 'register',
 		data: regFormToJSON(),
 		async: false,
 		success: function(){
