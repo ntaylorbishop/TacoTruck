@@ -8,8 +8,8 @@
 	padding-right:18px;	
 	background-color:#F7A11A;
 	border: 1px solid black;
-	padding-top:57px;
-	padding-bottom:55px;
+	padding-top:52px;
+	padding-bottom:60px;
 	color:black;
 }
 
@@ -35,6 +35,20 @@ label {
 input {
 	display: inline-block;
 	float: left;
+}
+
+#LogIn {
+	margin-left:48px;
+	margin-top:5px;
+}
+
+#register {
+	margin-top:5px;
+}
+
+#guest {
+	margin-top:2px;
+	margin-left:49px;
 }
 
 #content {
