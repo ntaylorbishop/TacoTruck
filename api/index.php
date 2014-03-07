@@ -119,9 +119,6 @@ function getMenuItems($itemType) {
 	try {
 		$db = dbconnect();
 		$stmt = $db->prepare($sql);   
-                $stmt->bindParam("emailAddr", $email);
-                $stmt->execute();
-
 		$stmt->bindParam("itemType", $itemType);
 		$stmt->execute();
 		$item = $stmt->fetchAll(PDO::FETCH_OBJ);  
