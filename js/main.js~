@@ -35,7 +35,21 @@ function checkRegister(pform) {
 		pform.pwd.focus();
 		return false;
 	}
-	/*return*/ register(pform);
+	var email = pform.email.value;
+	var check = $.ajax({
+		type: 'GET',
+		url: root_url + 'registered/' + email,
+		dataType: "json", // data type of response
+		async: false,
+	});
+	check = check.responseJSON;
+	check = check.email_registered;
+	if(check === true){
+		alert("Email is already registered");
+	}
+	else
+		register(pform);
+	return check;
 }
 
 function checkLogin(lForm) {
@@ -58,7 +72,7 @@ function checkLogin(lForm) {
 function register(rform) {
 	$.ajax({
 		type: 'POST',
-		url: 'http://localhost/TacoTruck/api/register',
+		url: root_url + 'register/',
 		data: regFormToJSON(),
 		async: false,
 		success: function(){
