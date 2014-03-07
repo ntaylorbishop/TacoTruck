@@ -5,27 +5,32 @@ require '../php/lib.php';
 
 $app = new Slim();
 
-$app->get('/recent_order/:UserId', 'getRecentOrder');
+$app->get('/recent_order/:email', 'getRecentOrder');
 $app->get('/locations',	'getLocations');
 $app->get('/verify/:email/:pass', 'verifyRegistered');
 $app->get('/menu/:itemType', 'getMenuItems');
-/*$app->post('/wines', 'addWine');
-$app->put('/wines/:id', 'updateWine');
-$app->delete('/wines/:id',	'deleteWine');*/
 
 $app->run();
 
-function getRecentOrder($userId) {
-	$sql = "SELECT t1.* FROM Orders t1 INNER JOIN (
-  			SELECT max(Dates) MostRecentOrder
-  			FROM Orders WHERE UserId=:UserId) t2
-  			ON t1.Dates = t2.MostRecentOrder;";
+function getRecentOrder($email) {
+	$sqlID = "SELECT UserId FROM Users WHERE EmailAddress=:email";
+	$sqlOrder = "SELECT t1.* FROM Orders t1 INNER JOIN (
+  				SELECT max(Dates) MostRecentOrder
+  				FROM Orders WHERE UserId=:UserId) t2
+  				ON t1.Dates = t2.MostRecentOrder";
 	try {
 		$db = dbconnect();
-		$stmt = $db->prepare($sql);
-		$stmt->bindParam("UserId", $userId);
-		$stmt->execute();  
-		$order = $stmt->fetchObject();
+		$stmtID = $db->prepare($sqlID);
+		$stmtID->bindParam("email", $email);
+		$stmtID->execute();  
+		$uID = $stmtID->fetch(PDO::FETCH_ASSOC);
+		$userID = $uID['UserId'];
+		
+		$stmtOrder = $db->prepare($sqlOrder);
+		$stmtOrder->bindParam("UserId", $userID);
+		$stmtOrder->execute();
+		$order = $stmtOrder->fetchObject();	
+		
 		$db = null;
 		echo '{"recent_order": ' . json_encode($order) . '}';
 	} catch(PDOException $e) {
