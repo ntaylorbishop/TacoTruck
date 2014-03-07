@@ -11,7 +11,8 @@ $(document).ready(function() {
 	var type3 = $("#accordion");
 	type3.append("<h3 id=\"type\">Filling</h3>");
 	type3.append("<div id=\"typeFill\"></div>");
-
+	var orderitemnum = 0;
+	$.cookie('orderitemnum', orderitemnum);
 	for(var i = 0; i < 4; i++){
 		$("#typeFill").append("<input type=\"radio\" name=\"filling\" value=\"" + type2[i].name + "\" class=\"filling\"/>" + type2[i].name + "<br />" );
 	}
@@ -160,10 +161,27 @@ $(document).ready(function() {
 	}
 
 	$("#add").click(function(event) {
+		var orderItemDetails = new Array();
+		var quantity = document.getElementById("quan");
+		quantity = quantity.options[quantity.selectedIndex].value;
+		orderItemDetails[0] = quantity;
+		tempNum = $.cookie('orderitemnum');
+		tempNum++;
+		$.cookie('orderitemnum', tempNum);
+		alert($.cookie('orderitemnum'));
+		var counter = 1;
 		for(var i = 0; i < ingredients.length; i++) {
 			if(ingredients[i].classList.contains('selected')) {
+				orderItemDetails[counter] = ingredients[i].value
+				counter++;
 				alert(ingredients[i].value);
 			}
+		}
+		numString = $.cookie('orderitemnum');
+		$.cookie('OrderItem' + numString, orderItemDetails);
+		for(var i = 1; i <= $.cookie('orderitemnum'); i++) {
+			
+			alert($.cookie('OrderItem' + i));
 		}
 	});
 
