@@ -1,5 +1,5 @@
 <?php
- //require('php/lib.php');
+ setcookie("loggedIn", "true", time()+3600);
 ?>
 
 <!DOCTYPE HTML>
