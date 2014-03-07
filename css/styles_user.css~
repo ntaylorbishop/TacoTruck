@@ -21,3 +21,29 @@
 #recentOrderDetails th {
 	text-align:center;
 }
+
+.divider2 {
+	margin-top:400px;
+}
+
+table {
+	padding: 5px 5px 5px 5px;
+}
+
+#buttons {
+	text-align:center;
+	width:800px;
+	height:50px;
+	background-color:#F7A11A;
+	border: 1px solid black;
+}
+
+form {
+	display:inline;
+}
+
+input {
+	margin-top:13px;
+	border: 2px solid black;
+	border-radius: 5px;
+}

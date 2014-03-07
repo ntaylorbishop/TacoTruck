@@ -22,9 +22,9 @@
 <h1 id="title">Taco Truck</h1>
 <div id="content">
   <div id="lastOrder">
-    <h2>Your last order was:</h2>
     <table id="recentOrder">
       <tr>
+	<th>Your Last Order:</th>
         <th>Date</th>
         <th>Price</th>
       </tr>
@@ -37,12 +37,14 @@
       </tr>
     </table>
   </div>
+  <div id="buttons">
   <form name="repeat" action="payment.php" method="post">
     <input type="submit" id="repeat" value="Repeat Last Order"/>
   </form>
   <form name="build" action="buildTaco.php" method="post">
     <input type="submit" id="build" value="Build Your Own Taco"/>
   </form>
+  </div>
 </div>
 <div class="divider2"></div>
 <div id="footer">
