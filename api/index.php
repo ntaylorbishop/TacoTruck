@@ -105,10 +105,10 @@ function verifyRegistered($email, $password) {
 		$stmt->execute();
 		$db = null;
 		if($stmt->rowCount() == 1) {
-			echo '{"registered": true}'; 
+			echo '{"registered": "true"}'; 
 			
 		}
-		else echo '{"registered": false}';
+		else echo '{"registered": "false"}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
