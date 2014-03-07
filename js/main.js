@@ -41,19 +41,16 @@ function checkRegister(pform) {
 function checkLogin(lForm) {
 	var email = lForm.email.value;
 	var pw = lForm.pwd.value;
-	alert("test");
 	var check = $.ajax({
 		type: 'GET',
 		url: root_url + 'verify/' + email + '/' + pw,
 		dataType: "json", // data type of response
 		async: false,
 	});
-	alert("test2");
-	alert(JSON.stringify(check));
 	check = check.responseJSON;
-	/*check = check.registered;
+	check = check.registered;
 	if(check === false){
 		alert("Email and Password Do Not Match");
 	}
-	return check;*/
+	return check;
 }

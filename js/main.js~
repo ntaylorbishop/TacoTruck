@@ -48,7 +48,7 @@ function checkLogin(lForm) {
 		dataType: "json", // data type of response
 		async: false,
 	});
-	alert("test");
+	alert("test2");
 	alert(JSON.stringify(check));
 	check = check.responseJSON;
 	/*check = check.registered;
