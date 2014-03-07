@@ -11,6 +11,7 @@ $app->get('/verify/:email/:pass', 'verifyRegistered');
 $app->get('/menu/:itemType', 'getMenuItems');
 $app->get('/registered/:email', 'checkIfRegistered');
 $app->post('/register', 'registerUser');
+$app->get('/fixin_price/:name', 'getFixinPrice');
 
 $app->run();
 
@@ -96,20 +97,21 @@ function getLocations() {
 }
 
 function verifyRegistered($email, $password) {
-	$sql = "SELECT * FROM Users WHERE EmailAddress=:email AND Password=:pass;";
+	$sql = "SELECT * FROM Users WHERE EmailAddress=:email";
 	
 	try {
 		$db = dbconnect();
 		$stmt = $db->prepare($sql);  
 		$stmt->bindParam("email", $email);
-		$stmt->bindParam("pass", $password);
 		$stmt->execute();
-		$db = null;
 		if($stmt->rowCount() == 1) {
-			echo '{"registered": true}'; 
-			
+			$userInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+			if(password_verify($password, $userInfo['password']))
+				echo '{"registered": true}';
+			else echo '{"registered": false}';	
 		}
 		else echo '{"registered": false}';
+		$db = null;
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
@@ -139,9 +141,9 @@ function checkIfRegistered($email) {
 		$stmt->bindParam("email", $email);
 		$stmt->execute();  
 		if($stmt->rowCount() > 0)
-			echo '{"email_registered": false}';  
+			echo '{"email_registered": true}';  
 		else 
-			echo '{"email_registered": true}';
+			echo '{"email_registered": false}';
 		$db = null;
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
@@ -149,11 +151,10 @@ function checkIfRegistered($email) {
 }
 
 function registerUser() {
-	echo 'sup';
 	error_log('addUser\n', 3, '/var/tmp/php.log');
 	$request = Slim::getInstance()->request();
 	$user = json_decode($request->getBody());
-
+	$pass = password_hash($user->pw, PASSWORD_DEFAULT);
 	$sql = "INSERT INTO Users VALUES (DEFAULT, :fName, :lName, :email, :pw, :tele, :ccp, :ccnum)";
 	try {
 		$db = dbconnect();
@@ -161,7 +162,7 @@ function registerUser() {
 		$stmt->bindParam("fName", $user->fName);
 		$stmt->bindParam("lName", $user->lName);
 		$stmt->bindParam("email", $user->email);
-		$stmt->bindParam("pw", $user->pw);
+		$stmt->bindParam("pw", $pass);
 		$stmt->bindParam("tele", $user->tele);
 		$stmt->bindParam("ccp", $user->ccp);
 		$stmt->bindParam("ccnum", $user->ccnum);
@@ -173,5 +174,20 @@ function registerUser() {
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 	
+}
+
+function getFixinPrice($name) {
+	$sql = "SELECT price FROM Menu WHERE name=:name";
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("name", $name);
+		$stmt->execute();
+		$price = $stmt->fetchAll(PDO::FETCH_OBJ); 
+		$db = null;
+		echo '{"price": ' . json_encode($price) . '}';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() . '}}';
+	}
 }
 ?>
