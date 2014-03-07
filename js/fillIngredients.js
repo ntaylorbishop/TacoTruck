@@ -191,6 +191,8 @@ $(document).ready(function() {
 			
 			alert($.cookie('OrderItem' + i));
 		}
+
+		document.getElementById("currentTaco").reset();
 	});
 });
 

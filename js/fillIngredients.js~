@@ -182,7 +182,7 @@ $(document).ready(function() {
 			}
 		}
 
-		$("#cart").after("</td></tr>");
+		$("#cart tr:last").after("</td></tr>");
 		
 
 		numString = $.cookie('orderitemnum');
@@ -191,6 +191,8 @@ $(document).ready(function() {
 			
 			alert($.cookie('OrderItem' + i));
 		}
+
+		document.getElementById("currentTaco").reset();
 	});
 });
 
