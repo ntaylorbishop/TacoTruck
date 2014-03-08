@@ -64,7 +64,7 @@
       </tr>
     </table>
     <h3>Order Total: </h3>
-    <form name="checkout" action="confirmation.php" method="post" onsubmit="addOrder()">
+    <form name="checkout" action="confirmation.php" method="post" onsubmit="return addOrder()">
       <input type="submit" id="checkout" name="checkout" value="Check Out"/>
     </form>
   </div>

@@ -122,7 +122,6 @@ function addOrder() {
 		var orderId = addOrderItem(i);
 		var tacoFixins = ($.cookie('OrderItem'+i)).split(",");
 		for(var j = 1; j <= tacoFixins.length - 1; j++) {
-			alert(orderId + " " + tacoFixins[j]);
 			addOrderItemDetail(orderId, tacoFixins[j]);
 		}
 	}
@@ -167,7 +166,6 @@ function addOrderItem(item) {
 		data: orderItemsToJSON(orderId, item),
 		async: false,
 		success: function(){
-			alert('Order Item created successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert('addOrderItem() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
@@ -208,7 +206,6 @@ function addOrderItemDetail(orderId, fixinName) {
 		data: orderItemDetailsToJSON(orderItemId, fixinId),
 		async: false,
 		success: function(){
-			alert('Order Item Details created successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert('addOrderItemDetail() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
@@ -217,11 +214,7 @@ function addOrderItemDetail(orderId, fixinName) {
 }
 
 function orderItemDetailsToJSON(orderItemId, fixinId) {
-	alert(JSON.stringify({
-		"OrderItemId": orderItemId,
-		"fixinId": fixinId
-	}));
-return JSON.stringify({
+	return JSON.stringify({
 		"OrderItemId": orderItemId,
 		"fixinId": fixinId
 	});

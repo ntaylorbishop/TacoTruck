@@ -45,25 +45,7 @@
     </form>
   </div>
   <div id="order">
-    <h2>Your Order</h2>
-    <table>
-      <tr>
-        <th>Quantity</th>
-        <th>Taco</th>
-        <th>Price</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Beef Fajita</td>
-        <td>3.75</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Brushfire</td>
-        <td>4.15</td>
-      </tr>
-    </table>
-    <h3>Order Total: </h3>
+    <h3>Order Total: <?php echo $_COOKIE['total']; ?> </h3>
     <form name="checkout" action="confirmation.php" method="post" onsubmit="return addOrder()">
       <input type="submit" id="checkout" name="checkout" value="Check Out"/>
     </form>
