@@ -120,7 +120,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"extraFill\"></div>");
 
 	for(var i = 0; i < 11; i++){
-		$("#extraFillFill").append("<input type=\"checkbox\" name=\"extras\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#extraFill").append("<input type=\"checkbox\" name=\"extras\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
 	}
 
 	$("#accordion").accordion({

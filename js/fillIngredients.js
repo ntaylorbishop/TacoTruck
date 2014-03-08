@@ -119,7 +119,7 @@ $(document).ready(function() {
 	type3.append("<h3 id=\"extras\">Extras</h3>");
 	type3.append("<div id=\"extraFill\"></div>");
 
-	for(var i = 0; i < 11; i++){
+	for(var i = 0; i < 6; i++){
 		$("#extraFill").append("<input type=\"checkbox\" name=\"extras\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
 	}
 
