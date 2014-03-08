@@ -28,7 +28,10 @@
   <h2>Your Order:</h2>
   <!--Then a text box where we will include an order, in list form-->
   <h3>Order total: </h3>
-    <a href="user.php">Home</a>
+  <form name="return" action="user.php" method="post">
+    <input type="submit" id="return" name="return" value="Home"/>
+    <?php $_POST['email'] = $_COOKIE["user"]; ?>
+  </form>
 </div>
 <div id="thanks">
   <h1>Thank you!  Come back soon!</h1>
