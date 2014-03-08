@@ -119,8 +119,12 @@ function addOrder() {
 		}
 	});
 	for(var i = 1; i <= $.cookie('orderitemnum'); i++) {
-		alert($.cookie('orderitemnum'));
-		addOrderItem(i);
+		var orderId = addOrderItem(i);
+		var tacoFixins = ($.cookie('OrderItem'+i)).split(",");
+		for(var j = 1; j <= tacoFixins.length - 1; j++) {
+			alert(orderId + " " + tacoFixins[j]);
+			addOrderItemDetail(orderId, tacoFixins[j]);
+		}
 	}
 }
 
@@ -169,6 +173,7 @@ function addOrderItem(item) {
 			alert('addOrderItem() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
 		}
 	});
+	return orderId;
 }
 
 function orderItemsToJSON(data, item) {
@@ -188,10 +193,9 @@ function addOrderItemDetail(orderId, fixinName) {
 	});
 	orderItemID = orderItemID.responseJSON;
 	var orderItemId = orderItemID.OrderItemId;
-
 	var fixinID = $.ajax({
 		type: 'GET',
-		url: root_url + 'fixinName_to_id/' + fixinName,
+		url: root_url + 'fixinName_to_Id/' + fixinName,
 		dataType: "json", // data type of response
 		async: false,
 	});
@@ -213,7 +217,10 @@ function addOrderItemDetail(orderId, fixinName) {
 }
 
 function orderItemDetailsToJSON(orderItemId, fixinId) {
-	return JSON.stringify({
+	alert(JSON.stringify({
+		"OrderItemId": orderItemId,
+		"fixinId": fixinId
+	}));return JSON.stringify({
 		"OrderItemId": orderItemId,
 		"fixinId": fixinId
 	});

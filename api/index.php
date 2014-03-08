@@ -18,6 +18,7 @@ $app->get('/time_to_orderid/:timestamp', 'timeToOrderId');
 $app->post('/add_order_item', 'addOrderItem');
 $app->post('/add_order_item_detail', 'addOrderItemDetails');
 $app->get('/orderId_to_orderItemId/:orderId', 'orderIdToOrderItemId');
+$app->get('/fixinName_to_Id/:fixinName', 'fixinNameToId');
 
 $app->run();
 
@@ -271,8 +272,8 @@ function addOrderItemDetails() {
 	try {
 		$db = dbconnect();
 		$stmt = $db->prepare($sql);
-		$stmt->bindParam("orderItemId", $orderItem->OrderItemId);
-		$stmt->bindParam("fixinId", $orderItem->fixinId);
+		$stmt->bindParam("orderItemId", $orderItemDetails->OrderItemId);
+		$stmt->bindParam("fixinId", $orderItemDetails->fixinId);
 		$stmt->execute();
 		$db = null;
 		echo json_encode($orderItemDetails);
@@ -282,15 +283,35 @@ function addOrderItemDetails() {
 }
 
 function orderIdToOrderItemId($orderId) {
-	$sql = "SELECT OrderItemId FROM OrderItem WHERE Order=:orderId";
+	$sql = "SELECT OrderItemId FROM OrderItem WHERE OrderId=:orderId";
 	try {
 		$db = dbconnect();
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam("orderId", $orderId);
 		$stmt->execute();
-		$orderItem = $stmt->fetch(PDO::FETCH_ASSOC); 
+		$rows = $stmt->rowCount();
+		for($i = 1; $i <= $rows; $i++) {
+			$orderItem = $stmt->fetch(PDO::FETCH_ASSOC);
+			if( $i == $rows) {
+				echo '{"OrderItemId": '.$orderItem['OrderItemId']. '}';
+			}
+		}
 		$db = null;
-		echo '{"OrderItemId": '.$orderItem['OrderItemId']. '}';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() . '}}';
+	}
+}
+
+function fixinNameToId($name) {
+	$sql = "SELECT TacoFixinId FROM Menu WHERE name=:name";
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("name", $name);
+		$stmt->execute();
+		$price = $stmt->fetch(PDO::FETCH_ASSOC); 
+		$db = null;
+		echo '{"TacoFixinId": '.$price['TacoFixinId']. '}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() . '}}';
 	}
