@@ -35,7 +35,7 @@
 }
 
 .divider2 {
-	margin-top:620px;
+	margin-top:665px;
 }
 
 #selection {
@@ -51,7 +51,7 @@
 
 #currentOrder {
 	text-align:center;
-	padding-top:4px;
+	padding-top:0px;
 }
 
 #checkOutBorder {
@@ -59,9 +59,9 @@
 	border: 1px solid black;
 	border-radius:5px;
 	margin-left:23px;
-	margin-top:490px;
+	margin-top:465px;
 	width:200px;
-	height:33px;
+	height:80px;
 }
 
 #cartDisplay {
@@ -90,4 +90,13 @@ table {
 	padding-left:5px;
 	width:250px;
 	color:black;
+}
+
+#totalPrice {
+	padding: 15px 0 0 0;
+	text-align:center;
+	color:black;
+	font-size:20px;
+	font-weight:bold;
+	height:35px;
 }
