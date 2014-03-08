@@ -13,6 +13,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"typeFill\"></div>");
 	var orderitemnum = 0;
 	$.cookie('orderitemnum', orderitemnum);
+	var totalPrice = 0;
 	for(var i = 0; i < 4; i++){
 		$("#typeFill").append("<input type=\"radio\" name=\"filling\" value=\"" + type2[i].name + "\" class=\"filling\"/>" + type2[i].name + "<br />" );
 	}
@@ -179,6 +180,18 @@ $(document).ready(function() {
 				counter++;
 				//alert(ingredients[i].value);
 				$("#cart td:last").after(ingredients[i].value+" ");
+				var fillPrice = $.ajax({
+					type: 'GET',
+					url: root_url + 'fixin_price/' + ingredients[i].value,
+					dataType: "json", // data type of response
+					async: false,
+				});
+				//alert(JSON.stringify(fillPrice));
+				fillPrice = fillPrice.responseJSON;
+				//alert(JSON.stringify(fillPrice));
+				var price = fillPrice.price;
+				alert(price);
+				totalPrice += price;
 			}
 		}
 
@@ -191,7 +204,7 @@ $(document).ready(function() {
 			
 			alert($.cookie('OrderItem' + i));
 		}
-
+		$("#totalPrice").html("$"+totalPrice);
 		document.getElementById("currentTaco").reset();
 	});
 });

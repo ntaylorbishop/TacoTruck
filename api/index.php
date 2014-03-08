@@ -11,7 +11,7 @@ $app->get('/verify/:email/:pass', 'verifyRegistered');
 $app->get('/menu/:itemType', 'getMenuItems');
 $app->get('/registered/:email', 'checkIfRegistered');
 $app->post('/register', 'registerUser');
-$app->get('/fixin_price/:name', 'getFixinPrice');
+$app->get('/menu/fixin_price/:name', 'getFixinPrice');
 
 $app->run();
 
@@ -182,9 +182,9 @@ function getFixinPrice($name) {
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam("name", $name);
 		$stmt->execute();
-		$price = $stmt->fetchAll(PDO::FETCH_OBJ); 
+		$price = $stmt->fetch(PDO::FETCH_ASSOC); 
 		$db = null;
-		echo '{"price": ' . json_encode($price) . '}';
+		echo '{"price": '.$price['price']. '}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() . '}}';
 	}
