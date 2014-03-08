@@ -96,4 +96,3 @@ function regFormToJSON() {
 		"ccnum": $('#ccNum').val()
 	});
 }
-
