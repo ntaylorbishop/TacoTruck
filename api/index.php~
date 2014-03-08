@@ -184,7 +184,7 @@ function getFixinPrice($name) {
 		$stmt->execute();
 		$price = $stmt->fetch(PDO::FETCH_ASSOC); 
 		$db = null;
-		echo '{"price": '.$price['Price']. '}';
+		echo '{"price": '.$price['price']. '}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() . '}}';
 	}

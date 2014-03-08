@@ -233,7 +233,7 @@ INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetab
 INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Cilantro', '0', '');
 INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Tortilla Strips', '0', '');
 INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('vegetables', 'Lettuce', '0', '');
-INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'X - Extra Meat-Veggies', '1', '');
+INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'X - Extra Meat/Veggies', '1', '');
 INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'Sour Cream', '0.75', '');
 INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'Guacamole', '0.75', '');
 INSERT INTO `Menu` (`itemType`, `name`, `price`, `heatRating`)  VALUES ('extras', 'Queso', '0.5', '');

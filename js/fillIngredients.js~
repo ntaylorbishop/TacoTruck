@@ -104,8 +104,23 @@ $(document).ready(function() {
 	type3.append("<h3 id=\"veggies\">Vegetables</h3>");
 	type3.append("<div id=\"vegFill\"></div>");
 
-	for(var i = 0; i < 2; i++){
+	for(var i = 0; i < 11; i++){
 		$("#vegFill").append("<input type=\"checkbox\" name=\"veggies\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+	}
+
+	var extras = $.ajax({
+		type: 'GET',
+		url: root_url + "extras",
+		dataType: "json",
+		async: false,
+	});
+	var type2 = extras.responseJSON;
+	var type3 = $("#accordion");
+	type3.append("<h3 id=\"extras\">Extras</h3>");
+	type3.append("<div id=\"extraFill\"></div>");
+
+	for(var i = 0; i < 11; i++){
+		$("#extraFillFill").append("<input type=\"checkbox\" name=\"extras\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
 	}
 
 	$("#accordion").accordion({
@@ -169,16 +184,14 @@ $(document).ready(function() {
 		tempNum = $.cookie('orderitemnum');
 		tempNum++;
 		$.cookie('orderitemnum', tempNum);
-		alert($.cookie('orderitemnum'));
 		var counter = 1;
 
-		$("#cart tr:last").after("<tr><td class=\"center\">" + quantity+ "</td><td>Taco" + $.cookie('orderitemnum'));
+		$("#cart tr:last").after("<tr><td class=\"center\">" + quantity+ "</td><td>Taco " + $.cookie('orderitemnum'));
 
 		for(var i = 0; i < ingredients.length; i++) {
 			if(ingredients[i].classList.contains('selected')) {
 				orderItemDetails[counter] = ingredients[i].value
 				counter++;
-				//alert(ingredients[i].value);
 				$("#cart td:last").after(ingredients[i].value+" ");
 				var fillPrice = $.ajax({
 					type: 'GET',
@@ -186,12 +199,9 @@ $(document).ready(function() {
 					dataType: "json", // data type of response
 					async: false,
 				});
-				//alert(JSON.stringify(fillPrice));
 				fillPrice = fillPrice.responseJSON;
-				//alert(JSON.stringify(fillPrice));
 				var price = fillPrice.price;
-				alert(price);
-				totalPrice += price;
+				totalPrice += (quantity*price);
 			}
 		}
 
@@ -202,7 +212,7 @@ $(document).ready(function() {
 		$.cookie('OrderItem' + numString, orderItemDetails);
 		for(var i = 1; i <= $.cookie('orderitemnum'); i++) {
 			
-			alert($.cookie('OrderItem' + i));
+			//alert($.cookie('OrderItem' + i));
 		}
 		$("#totalPrice").html("$"+totalPrice);
 		document.getElementById("currentTaco").reset();
