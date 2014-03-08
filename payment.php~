@@ -11,6 +11,7 @@
 <script src="js/jQuery.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <script src="js/main.js"></script>
 </head>
 
@@ -63,7 +64,7 @@
       </tr>
     </table>
     <h3>Order Total: </h3>
-    <form name="checkout" action="confirmation.php" method="post">
+    <form name="checkout" action="confirmation.php" method="post" onsubmit="addOrder()">
       <input type="submit" id="checkout" name="checkout" value="Check Out"/>
     </form>
   </div>

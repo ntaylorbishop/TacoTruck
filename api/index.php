@@ -12,6 +12,8 @@ $app->get('/menu/:itemType', 'getMenuItems');
 $app->get('/registered/:email', 'checkIfRegistered');
 $app->post('/register', 'registerUser');
 $app->get('/menu/fixin_price/:name', 'getFixinPrice');
+$app->get('/email_to_id/:email', 'emailToID');
+$app->post('/add_order', 'addOrder');
 
 $app->run();
 
@@ -185,6 +187,40 @@ function getFixinPrice($name) {
 		$price = $stmt->fetch(PDO::FETCH_ASSOC); 
 		$db = null;
 		echo '{"price": '.$price['price']. '}';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() . '}}';
+	}
+}
+
+function addOrder() {
+	$request = Slim::getInstance()->request();
+	$order = json_decode($request->getBody());
+	$sql = "INSERT INTO Orders VALUES (DEFAULT, :userId, :date, :total)";
+
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("userId", $order->UserId);
+		$stmt->bindParam("date", $order->date);
+		$stmt->bindParam("total", $order->total);
+		$stmt->execute();
+		$db = null;
+		echo json_encode($order);
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() . '}}';
+	}
+}
+
+function emailToID($email) {
+	$sql = "SELECT UserId FROM Users WHERE EmailAddress=:email";
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("email", $email);
+		$stmt->execute();
+		$user = $stmt->fetch(PDO::FETCH_ASSOC); 
+		$db = null;
+		echo '{"UserId": '.$user['UserId']. '}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() . '}}';
 	}

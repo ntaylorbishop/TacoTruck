@@ -1,5 +1,23 @@
 var root_url = "http://localhost/TacoTruck/api/menu/";
 
+function timeStamp() {
+	var now = new Date();
+  	var date = [ now.getFullYear(), now.getMonth() + 1, now.getDate(),  ];
+  	var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
+  	for ( var i = 1; i < 3; i++ ) {
+  		if ( time[i] < 10 ) {
+			time[i] = "0" + time[i];
+    		}
+  	}
+  	for ( var i = 1; i < 3; i++ ) {
+  		if ( date[i] < 10 ) {
+      			date[i] = "0" + date[i];
+    		}
+  	}
+ 	// Return the formatted string
+  	return date.join("-") + " " + time.join(":");
+}
+
 $(document).ready(function() {
 	var type = $.ajax({
 		type: 'GET',
@@ -119,7 +137,7 @@ $(document).ready(function() {
 	type3.append("<h3 id=\"extras\">Extras</h3>");
 	type3.append("<div id=\"extraFill\"></div>");
 
-	for(var i = 0; i < 11; i++){
+	for(var i = 0; i < 6; i++){
 		$("#extraFill").append("<input type=\"checkbox\" name=\"extras\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
 	}
 
@@ -207,18 +225,12 @@ $(document).ready(function() {
 
 		$("#cart tr:last").after("</td></tr>");
 		
-
+		alert(timestamp());
 		numString = $.cookie('orderitemnum');
 		$.cookie('OrderItem' + numString, orderItemDetails);
-		for(var i = 1; i <= $.cookie('orderitemnum'); i++) {
-			
-			//alert($.cookie('OrderItem' + i));
-		}
 		$("#totalPrice").html("$"+totalPrice);
+		var totalprice = "$" + totalPrice;
+		$.cookie('total', totalprice);
 		document.getElementById("currentTaco").reset();
 	});
 });
-
-function makeTaco() {
-	
-}

@@ -96,3 +96,53 @@ function regFormToJSON() {
 		"ccnum": $('#ccNum').val()
 	});
 }
+
+function addOrder() {
+	alert('test');
+	var userID = $.ajax({
+		type: 'GET',
+		url: root_url + 'email_to_id/' + $.cookie('user'),
+		dataType: "json", // data type of response
+		async: false,
+	});
+	userID = userID.responseJSON;
+	var userId = userID.UserId;
+	alert(userId);
+	$.ajax({
+		type: 'POST',
+		url: root_url + 'add_order',
+		data: orderFormToJSON(userId),
+		async: false,
+		success: function(){
+			alert('Order created successfully');
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('addOrder() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
+		}
+	});
+}
+
+function orderFormToJSON(data) {
+	var now = new Date();
+  	var date = [ now.getFullYear(), now.getMonth() + 1, now.getDate(),  ];
+  	var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
+  	for ( var i = 1; i < 3; i++ ) {
+  		if ( time[i] < 10 ) {
+			time[i] = "0" + time[i];
+    		}
+  	}
+  	for ( var i = 1; i < 3; i++ ) {
+  		if ( date[i] < 10 ) {
+      			date[i] = "0" + date[i];
+    		}
+  	}
+ 	// Return the formatted string
+  	var timestamp = date.join("-") + " " + time.join(":");
+
+	return JSON.stringify({
+		"UserId": data,
+		"date": timestamp,
+		"total": $.cookie('total')
+	});
+
+}

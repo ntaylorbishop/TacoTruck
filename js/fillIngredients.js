@@ -206,19 +206,11 @@ $(document).ready(function() {
 		}
 
 		$("#cart tr:last").after("</td></tr>");
-		
-
 		numString = $.cookie('orderitemnum');
 		$.cookie('OrderItem' + numString, orderItemDetails);
-		for(var i = 1; i <= $.cookie('orderitemnum'); i++) {
-			
-			//alert($.cookie('OrderItem' + i));
-		}
 		$("#totalPrice").html("$"+totalPrice);
+		var totalprice = "$" + totalPrice;
+		$.cookie('total', totalprice);
 		document.getElementById("currentTaco").reset();
 	});
 });
-
-function makeTaco() {
-	
-}
