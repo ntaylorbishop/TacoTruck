@@ -1,6 +1,9 @@
 <?php
-	$useremail = $_POST['email'];
-	setcookie("user", $useremail, time() + 3600);
+	if(!empty($_POST['email'])) {
+		
+		$useremail = $_POST['email'];
+		setcookie("user", $useremail, time() + 3600);
+	}		
 ?>
 
 <!DOCTYPE HTML>

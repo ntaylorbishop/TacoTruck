@@ -8,6 +8,7 @@
 <script src="js/jQuery.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.js"></script>
 <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <script src="js/main.js"></script>
 </head>
 
@@ -29,6 +30,7 @@
   <h3>Order total: </h3>
   <form name="return" action="user.php" method="post">
     <input type="submit" id="return" name="return" value="Home"/>
+    <?php $_POST['email'] = $_COOKIE["user"]; ?>
   </form>
 </div>
 <div id="thanks">

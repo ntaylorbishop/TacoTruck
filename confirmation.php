@@ -28,9 +28,7 @@
   <h2>Your Order:</h2>
   <!--Then a text box where we will include an order, in list form-->
   <h3>Order total: </h3>
-  <form name="return" action="user.php" method="post">
-    <input type="submit" id="return" name="return" value="Home"/>
-  </form>
+    <a href="user.php">Home</a>
 </div>
 <div id="thanks">
   <h1>Thank you!  Come back soon!</h1>

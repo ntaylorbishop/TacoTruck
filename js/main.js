@@ -98,7 +98,6 @@ function regFormToJSON() {
 }
 
 function addOrder() {
-	alert('test');
 	var userID = $.ajax({
 		type: 'GET',
 		url: root_url + 'email_to_id/' + $.cookie('user'),
@@ -107,7 +106,6 @@ function addOrder() {
 	});
 	userID = userID.responseJSON;
 	var userId = userID.UserId;
-	alert(userId);
 	$.ajax({
 		type: 'POST',
 		url: root_url + 'add_order',
@@ -120,6 +118,10 @@ function addOrder() {
 			alert('addOrder() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
 		}
 	});
+	for(var i = 1; i <= $.cookie('orderitemnum'); i++) {
+		alert($.cookie('orderitemnum'));
+		addOrderItem(i);
+	}
 }
 
 function orderFormToJSON(data) {
@@ -138,11 +140,42 @@ function orderFormToJSON(data) {
   	}
  	// Return the formatted string
   	var timestamp = date.join("-") + " " + time.join(":");
-
+	$.cookie('recentOrderTimestamp', timestamp);
 	return JSON.stringify({
 		"UserId": data,
 		"date": timestamp,
 		"total": $.cookie('total')
 	});
-
 }
+
+function addOrderItem(item) {
+	var orderID = $.ajax({
+		type: 'GET',
+		url: root_url + 'time_to_orderid/' + $.cookie('recentOrderTimestamp'),
+		dataType: "json", // data type of response
+		async: false,
+	});
+	orderID = orderID.responseJSON;
+	var orderId = orderID.OrderId;
+	$.ajax({
+		type: 'POST',
+		url: root_url + 'add_order_item',
+		data: orderItemsToJSON(orderId, item),
+		async: false,
+		success: function(){
+			alert('Order Item created successfully');
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('addOrder() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
+		}
+	});
+}
+
+function orderItemsToJSON(data, item) {
+	var quantity = $.cookie('OrderItem' + item)[0];
+	return JSON.stringify({
+		"OrderId": data,
+		"quantity": quantity
+	});
+}
+

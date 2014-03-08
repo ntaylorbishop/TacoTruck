@@ -24,7 +24,7 @@
 <h1 id="title">Build your Taco Order</h1>
 <div id="content">
 <div id="selection">
-  <form id="currentTaco" action="">
+  <form id="currentTaco">
     <div id="ingredients">
       <div id="accordion"> </div>
     </div>
