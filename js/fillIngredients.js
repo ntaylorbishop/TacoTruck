@@ -90,7 +90,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"saucesFill\"></div>");
 
 	for(var i = 0; i < 12; i++){
-		$("#saucesFill").append("<input type=\"checkbox\" name=\"sauces\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#saucesFill").append("<input type=\"checkbox\" name=\"sauces\" value=\"" + type2[i].name + "\" class=\"sauces\"/>" + type2[i].name + "<br />" );
 	}
 
 	var vegetables = $.ajax({
@@ -105,7 +105,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"vegFill\"></div>");
 
 	for(var i = 0; i < 11; i++){
-		$("#vegFill").append("<input type=\"checkbox\" name=\"veggies\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#vegFill").append("<input type=\"checkbox\" name=\"veggies\" value=\"" + type2[i].name + "\" class=\"veggies\" />" + type2[i].name + "<br />" );
 	}
 
 	var extras = $.ajax({
@@ -120,7 +120,7 @@ $(document).ready(function() {
 	type3.append("<div id=\"extraFill\"></div>");
 
 	for(var i = 0; i < 6; i++){
-		$("#extraFill").append("<input type=\"checkbox\" name=\"extras\" value=\"" + type2[i].name + "\" />" + type2[i].name + "<br />" );
+		$("#extraFill").append("<input type=\"checkbox\" name=\"extras\" value=\"" + type2[i].name + "\" class=\"extras\"/>" + type2[i].name + "<br />" );
 	}
 
 	$("#accordion").accordion({
@@ -135,13 +135,12 @@ $(document).ready(function() {
 	var rice = document.getElementsByClassName('rice');
 	var cheese = document.getElementsByClassName('cheese');
 	var beans = document.getElementsByClassName('beans');
-
-	for(var i = 0; i < fillings.length; i++) {
-		//alert(fillings[i].value);
-	}
+	var sauces = document.getElementsByClassName('sauces');
+	var veggies = document.getElementsByClassName('veggies');
+	var extras = document.getElementsByClassName('extras');
 	
 
-	for(var i = 0; i < ingredients.length-3; i++) {
+	for(var i = 0; i < ingredients.length - 3; i++) {
 		ingredients[i].addEventListener('click', selected, false);
 	}
 
@@ -171,6 +170,21 @@ $(document).ready(function() {
 		if(type === 'beansFill'){
 			for(var i = 0; i < beans.length; i++) {
 				beans[i].className = "beans";
+			}
+		}
+		if(type === 'saucesFill'){
+			for(var i = 0; i < sauces.length; i++) {
+				sauces[i].className = "sauces";
+			}
+		}
+		if(type === 'vegFill'){
+			for(var i = 0; i < veggies.length; i++) {
+				veggies[i].className = "veggies";
+			}
+		}
+		if(type === 'extraFill'){
+			for(var i = 0; i < extras.length; i++) {
+				extras[i].className = "extras";
 			}
 		}
 		event.target.className += " selected";
@@ -204,13 +218,38 @@ $(document).ready(function() {
 				totalPrice += (quantity*price);
 			}
 		}
-
+		
 		$("#cart tr:last").after("</td></tr>");
 		numString = $.cookie('orderitemnum');
 		$.cookie('OrderItem' + numString, orderItemDetails);
+		totalPrice = parseFloat(totalPrice).toFixed(2);
 		$("#totalPrice").html("$"+totalPrice);
 		var totalprice = "$" + totalPrice;
 		$.cookie('total', totalprice);
 		document.getElementById("currentTaco").reset();
+		for(var i = 0; i < fillings.length; i++) {
+			fillings[i].className = "filling";
+		}
+		for(var i = 0; i < tortillas.length; i++) {
+			tortillas[i].className = "tortilla";
+		}
+		for(var i = 0; i < rice.length; i++) {
+			rice[i].className = "rice";
+		}
+		for(var i = 0; i < cheese.length; i++) {
+			cheese[i].className = "cheese";
+		}
+		for(var i = 0; i < beans.length; i++) {
+			beans[i].className = "beans";
+		}
+		for(var i = 0; i < sauces.length; i++) {
+			sauces[i].className = "sauces";
+		}
+		for(var i = 0; i < veggies.length; i++) {
+			veggies[i].className = "veggies";
+		}
+		for(var i = 0; i < extras.length; i++) {
+			extras[i].className = "extras";
+		}
 	});
 });

@@ -54,7 +54,7 @@ Quantity:
 </table>
 </div>
 	<div id="checkOutBorder">
-	
+	<div id="totalPrice"></div>
     <form id="currentOrder" action="payment.php" method="post">
       <input type="submit" value="Proceed to Check Out" />
     </form>
