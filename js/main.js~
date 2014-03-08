@@ -119,6 +119,7 @@ function addOrder() {
 		}
 	});
 	for(var i = 1; i <= $.cookie('orderitemnum'); i++) {
+		alert($.cookie('orderitemnum'));
 		addOrderItem(i);
 	}
 }
@@ -165,7 +166,7 @@ function addOrderItem(item) {
 			alert('Order Item created successfully');
 		},
 		error: function(jqXHR, textStatus, errorThrown){
-			alert('addOrder() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
+			alert('addOrderItem() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
 		}
 	});
 }
@@ -178,3 +179,42 @@ function orderItemsToJSON(data, item) {
 	});
 }
 
+function addOrderItemDetail(orderId, fixinName) {
+	var orderItemID = $.ajax({
+		type: 'GET',
+		url: root_url + 'orderId_to_orderItemId/' + orderId,
+		dataType: "json", // data type of response
+		async: false,
+	});
+	orderItemID = orderItemID.responseJSON;
+	var orderItemId = orderItemID.OrderItemId;
+
+	var fixinID = $.ajax({
+		type: 'GET',
+		url: root_url + 'fixinName_to_id/' + fixinName,
+		dataType: "json", // data type of response
+		async: false,
+	});
+	fixinID = fixinID.responseJSON;
+	var fixinId = fixinID.TacoFixinId;
+
+	$.ajax({
+		type: 'POST',
+		url: root_url + 'add_order_item_detail',
+		data: orderItemDetailsToJSON(orderItemId, fixinId),
+		async: false,
+		success: function(){
+			alert('Order Item Details created successfully');
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('addOrderItemDetail() error: ' + textStatus + "\nerrorThrown: " + errorThrown);
+		}
+	});
+}
+
+function orderItemDetailsToJSON(orderItemId, fixinId) {
+	return JSON.stringify({
+		"OrderItemId": orderItemId,
+		"fixinId": fixinId
+	});
+}

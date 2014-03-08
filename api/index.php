@@ -16,6 +16,8 @@ $app->get('/email_to_id/:email', 'emailToID');
 $app->post('/add_order', 'addOrder');
 $app->get('/time_to_orderid/:timestamp', 'timeToOrderId');
 $app->post('/add_order_item', 'addOrderItem');
+$app->post('/add_order_item_detail', 'addOrderItemDetails');
+$app->get('/orderId_to_orderItemId/:orderId', 'orderIdToOrderItemId');
 
 $app->run();
 
@@ -256,6 +258,39 @@ function timeToOrderId($timestamp) {
 		$order = $stmt->fetch(PDO::FETCH_ASSOC); 
 		$db = null;
 		echo '{"OrderId": '.$order['OrderId']. '}';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() . '}}';
+	}
+}
+
+function addOrderItemDetails() {
+	$request = Slim::getInstance()->request();
+	$orderItemDetails = json_decode($request->getBody());
+	$sql = "INSERT INTO OrderItemDetails VALUES (DEFAULT, :orderItemId, :fixinId)";
+
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("orderItemId", $orderItem->OrderItemId);
+		$stmt->bindParam("fixinId", $orderItem->fixinId);
+		$stmt->execute();
+		$db = null;
+		echo json_encode($orderItemDetails);
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() . '}}';
+	}
+}
+
+function orderIdToOrderItemId($orderId) {
+	$sql = "SELECT OrderItemId FROM OrderItem WHERE Order=:orderId";
+	try {
+		$db = dbconnect();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("orderId", $orderId);
+		$stmt->execute();
+		$orderItem = $stmt->fetch(PDO::FETCH_ASSOC); 
+		$db = null;
+		echo '{"OrderItemId": '.$orderItem['OrderItemId']. '}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() . '}}';
 	}
